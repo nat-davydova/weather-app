@@ -1,0 +1,42 @@
+mixin weather-details-item(dataType, itemName, itemValue)
+    //weather details item
+    li.weather__details-item(data-detail-type= dataType)
+        strong.weather__details-title= itemName
+        span.weather__details-value= itemValue
+
+//________ WEATHER ________
+.weather
+
+    //weather preloader
+    .weather__preloader.preloader
+
+        .preloader__icon.icon.icon--md.m-auto.text-success.js-hidden
+            svg
+                use(xlink:href="/assets/sprites/sprites-solid/svg/sprite.symbol.svg#loader")
+
+    //weather info
+    .weather__info
+
+            //weather icon
+            .weather__icon.icon.icon--lg.m-auto
+                svg
+                    use(xlink:href="./assets/sprites/sprites-colored/svg/sprite.symbol.svg#clear-sky")
+
+            //weather title
+            .weather__title.text-center.mt-4 Clear sky
+
+            //weather details
+            .weather__details.mt-4
+                ul.weather__details-list.p-0
+
+                    //weather details item
+                    li.weather__details-item(data-detail-type="temp")
+                        strong.weather__details-title Temp
+                        span.weather__details-value 29°C
+                        button.weather__temp-switcher.btn.btn-success.ml-2(type="button") F
+
+                    +weather-details-item('wind', 'Wind', '3.0 m/s')
+                    +weather-details-item('pres', 'Pressure', '1010 hpa')
+                    +weather-details-item('humid', 'Humidity', '54%')
+                    +weather-details-item('sunr', 'Sunrise', '03:35')
+                    +weather-details-item('suns', 'Sunset', '22:25')

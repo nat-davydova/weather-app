@@ -1,0 +1,21 @@
+//WEATHER STYLES
+
+//list styles
+.weather__details-list {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 10px 15px;
+
+	list-style-type: none;
+}
+
+//details titles
+.weather__details-title {
+
+	//':' symbol
+	&:after {
+		margin-right: 5px;
+
+		content: ':';
+	}
+}
