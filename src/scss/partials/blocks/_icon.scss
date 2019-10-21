@@ -26,6 +26,11 @@ $icon--lg: 150px;
 }
 
 .icon--lg {
-	width: $icon--lg;
-	height: $icon--lg;
+	width: ($icon--lg * .7);
+	height: ($icon--lg * .7);
+
+	@media (min-width: $mobile-width) {
+		width: $icon--lg;
+		height: $icon--lg;
+	}
 }
