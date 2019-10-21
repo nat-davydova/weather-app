@@ -1,5 +1,12 @@
 //APP IMPORTS
+
+//import models
+import DateTime from "./modules/models/DateTime";
+
+//import configs
 import DOM from './modules/configs/path';
+
+
 
 //state
 //here stored:
@@ -10,6 +17,8 @@ const state = {};
 
 //*** DATE AND TIME CONTROLLER
 const dateController = () => {
+
+	state.date = new DateTime();
 
 };
 
