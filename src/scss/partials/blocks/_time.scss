@@ -1,0 +1,14 @@
+//TIME STYLES
+
+.time {
+	font-size: 2.5rem;
+}
+
+//item styles
+.time__hour {
+
+	//':' symbol
+	&:after {
+		content: ':';
+	}
+}
