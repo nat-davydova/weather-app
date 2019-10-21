@@ -1,0 +1,28 @@
+//APP STYLES
+
+//settings
+$frame-width: 375px;
+$frame-height: 667px;
+$frame-padding: 16px;
+
+//styles
+.app {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+}
+
+.app__frame {
+	width: $frame-width;
+	height: $frame-height;
+	padding: $frame-padding;
+
+	box-shadow:
+					0 16px 24px 2px rgba(0,0,0,0.14),
+					0 6px 30px 5px rgba(0,0,0,0.12),
+					0 8px 10px -7px rgba(0,0,0,0.2);
+
+	overflow: hidden;
+}
