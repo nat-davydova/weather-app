@@ -3,9 +3,11 @@
 //import models
 import DateTime from "./modules/models/DateTime";
 
-//import configs
-import DOM from './modules/configs/path';
+//import views
+import * as dateView from './modules/views/dateTimeVew';
 
+//import configs
+import { DOM } from './modules/configs/path';
 
 
 //state
@@ -23,6 +25,9 @@ const dateController = () => {
 
 	//convert month from nums to month name
 	state.date.getMonth();
+
+	//render date and time into UI
+	dateView.renderDate(state.date);
 
 };
 

@@ -32,18 +32,78 @@ function _interopRequireDefault(obj) {
 
 module.exports = _interopRequireDefault;
 },{}],4:[function(require,module,exports){
+function _getRequireWildcardCache() {
+  if (typeof WeakMap !== "function") return null;
+  var cache = new WeakMap();
+
+  _getRequireWildcardCache = function _getRequireWildcardCache() {
+    return cache;
+  };
+
+  return cache;
+}
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  }
+
+  var cache = _getRequireWildcardCache();
+
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  var newObj = {};
+
+  if (obj != null) {
+    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+
+        if (desc && (desc.get || desc.set)) {
+          Object.defineProperty(newObj, key, desc);
+        } else {
+          newObj[key] = obj[key];
+        }
+      }
+    }
+  }
+
+  newObj["default"] = obj;
+
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+
+  return newObj;
+}
+
+module.exports = _interopRequireWildcard;
+},{}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.DOM = void 0;
 //ALL THE DOM ELEMENTS STORED HERE
-var DOM = {};
-var _default = DOM;
-exports["default"] = _default;
+var DOM = {
+  date: {
+    year: document.querySelector('.date__year'),
+    month: document.querySelector('.date__month'),
+    date: document.querySelector('.date__day')
+  },
+  time: {
+    hours: document.querySelector('.time__hour'),
+    mins: document.querySelector('.time__minutes')
+  }
+};
+exports.DOM = DOM;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -63,7 +123,7 @@ var DateTime = function DateTime() {
 
   (0, _classCallCheck2["default"])(this, DateTime);
   (0, _defineProperty2["default"])(this, "getMonth", function () {
-    var monthArr = ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Nov', 'Dec'];
+    var monthArr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var numMonth = _this.month;
     _this.month = monthArr[numMonth];
   });
@@ -79,17 +139,54 @@ var DateTime = function DateTime() {
 exports["default"] = DateTime;
 ;
 
-},{"@babel/runtime/helpers/classCallCheck":1,"@babel/runtime/helpers/defineProperty":2,"@babel/runtime/helpers/interopRequireDefault":3}],6:[function(require,module,exports){
+},{"@babel/runtime/helpers/classCallCheck":1,"@babel/runtime/helpers/defineProperty":2,"@babel/runtime/helpers/interopRequireDefault":3}],7:[function(require,module,exports){
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderDate = void 0;
+
+var _path = require("./../configs/path");
+
+//import DOM from configs
+//render date/time item into the DOM - helper function
+var renderDateItem = function renderDateItem(item, uiElem) {
+  uiElem.textContent = item;
+}; //render date and time
+
+
+var renderDate = function renderDate(dateObj) {
+  //render year
+  renderDateItem(dateObj.year, _path.DOM.date.year); //render month
+
+  renderDateItem(dateObj.month, _path.DOM.date.month); //render date
+
+  renderDateItem(dateObj.date, _path.DOM.date.date); //render hours
+
+  renderDateItem(dateObj.hours, _path.DOM.time.hours); //render min
+
+  renderDateItem(dateObj.mins, _path.DOM.time.mins);
+};
+
+exports.renderDate = renderDate;
+
+},{"./../configs/path":5}],8:[function(require,module,exports){
+"use strict";
+
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 var _DateTime = _interopRequireDefault(require("./modules/models/DateTime"));
 
-var _path = _interopRequireDefault(require("./modules/configs/path"));
+var dateView = _interopRequireWildcard(require("./modules/views/dateTimeVew"));
+
+var _path = require("./modules/configs/path");
 
 //APP IMPORTS
 //import models
+//import views
 //import configs
 //state
 //here stored:
@@ -102,7 +199,9 @@ var dateController = function dateController() {
   //setting date and time class
   state.date = new _DateTime["default"](); //convert month from nums to month name
 
-  state.date.getMonth();
+  state.date.getMonth(); //render date and time into UI
+
+  dateView.renderDate(state.date);
 }; //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
 
 
@@ -112,4 +211,4 @@ window.addEventListener('load', function () {
 });
 console.log(state);
 
-},{"./modules/configs/path":4,"./modules/models/DateTime":5,"@babel/runtime/helpers/interopRequireDefault":3}]},{},[6]);
+},{"./modules/configs/path":5,"./modules/models/DateTime":6,"./modules/views/dateTimeVew":7,"@babel/runtime/helpers/interopRequireDefault":3,"@babel/runtime/helpers/interopRequireWildcard":4}]},{},[8]);
