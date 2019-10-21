@@ -1,0 +1,18 @@
+//DATE STYLES
+
+$date-item-offset: 5px;
+
+//items styles
+.date__day {
+	margin-right: $date-item-offset;
+}
+
+.date__month {
+
+	//',' symbol
+	&:after {
+		margin-right: $date-item-offset;
+
+		content: ',';
+	}
+}
