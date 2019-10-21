@@ -2,9 +2,12 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min';
 
 //SETUP IMPORTS
+@import "partials/setup/helpers";
 @import "partials/setup/mixins";
 
 //PROJECT STYLES IMPORTS
 @import "partials/blocks/app";
 @import "partials/blocks/date";
+@import "partials/blocks/icon";
+@import "partials/blocks/preloader";
 @import "partials/blocks/time";
