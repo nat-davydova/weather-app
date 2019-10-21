@@ -11,6 +11,26 @@ export default class DateTime {
 		this.mins = fullDate.getMinutes();
 	}
 
+	//converting month from number to month name
+	getMonth = () => {
 
+		const monthArr = [
+			'Jan',
+			'Feb',
+			'Mar',
+			'Apr',
+			'Jun',
+			'Jul',
+			'Aug',
+			'Sep',
+			'Nov',
+			'Dec'
+		];
+
+		const numMonth = this.month;
+
+		this.month = monthArr[numMonth];
+
+	};
 
 };

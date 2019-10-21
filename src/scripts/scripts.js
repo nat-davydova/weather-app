@@ -18,7 +18,11 @@ const state = {};
 //*** DATE AND TIME CONTROLLER
 const dateController = () => {
 
+	//setting date and time class
 	state.date = new DateTime();
+
+	//convert month from nums to month name
+	state.date.getMonth();
 
 };
 

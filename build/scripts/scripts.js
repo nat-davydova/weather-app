@@ -7,6 +7,23 @@ function _classCallCheck(instance, Constructor) {
 
 module.exports = _classCallCheck;
 },{}],2:[function(require,module,exports){
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+},{}],3:[function(require,module,exports){
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
     "default": obj
@@ -14,7 +31,7 @@ function _interopRequireDefault(obj) {
 }
 
 module.exports = _interopRequireDefault;
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26,7 +43,7 @@ var DOM = {};
 var _default = DOM;
 exports["default"] = _default;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -38,21 +55,31 @@ exports["default"] = void 0;
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
 //*** DATE AND TIME
 var DateTime = function DateTime() {
+  var _this = this;
+
   (0, _classCallCheck2["default"])(this, DateTime);
+  (0, _defineProperty2["default"])(this, "getMonth", function () {
+    var monthArr = ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Nov', 'Dec'];
+    var numMonth = _this.month;
+    _this.month = monthArr[numMonth];
+  });
   var fullDate = new Date();
   this.year = fullDate.getFullYear();
   this.month = fullDate.getMonth();
   this.date = fullDate.getDate();
   this.hours = fullDate.getHours();
   this.mins = fullDate.getMinutes();
-};
+} //converting month from number to month name
+;
 
 exports["default"] = DateTime;
 ;
 
-},{"@babel/runtime/helpers/classCallCheck":1,"@babel/runtime/helpers/interopRequireDefault":2}],5:[function(require,module,exports){
+},{"@babel/runtime/helpers/classCallCheck":1,"@babel/runtime/helpers/defineProperty":2,"@babel/runtime/helpers/interopRequireDefault":3}],6:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -72,7 +99,10 @@ var _path = _interopRequireDefault(require("./modules/configs/path"));
 var state = {}; //*** DATE AND TIME CONTROLLER
 
 var dateController = function dateController() {
-  state.date = new _DateTime["default"]();
+  //setting date and time class
+  state.date = new _DateTime["default"](); //convert month from nums to month name
+
+  state.date.getMonth();
 }; //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
 
 
@@ -82,4 +112,4 @@ window.addEventListener('load', function () {
 });
 console.log(state);
 
-},{"./modules/configs/path":3,"./modules/models/DateTime":4,"@babel/runtime/helpers/interopRequireDefault":2}]},{},[5]);
+},{"./modules/configs/path":4,"./modules/models/DateTime":5,"@babel/runtime/helpers/interopRequireDefault":3}]},{},[6]);
