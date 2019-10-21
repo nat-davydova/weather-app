@@ -142,6 +142,9 @@ exports["default"] = DateTime;
 },{"@babel/runtime/helpers/classCallCheck":1,"@babel/runtime/helpers/defineProperty":2,"@babel/runtime/helpers/interopRequireDefault":3}],7:[function(require,module,exports){
 "use strict";
 
+},{}],8:[function(require,module,exports){
+"use strict";
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -189,7 +192,9 @@ var renderDate = function renderDate(dateObj) {
 
 exports.renderDate = renderDate;
 
-},{"./../configs/path":5}],8:[function(require,module,exports){
+},{"./../configs/path":5}],9:[function(require,module,exports){
+arguments[4][7][0].apply(exports,arguments)
+},{"dup":7}],10:[function(require,module,exports){
 "use strict";
 
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
@@ -198,7 +203,11 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _DateTime = _interopRequireDefault(require("./modules/models/DateTime"));
 
+var _Location = _interopRequireDefault(require("./modules/models/Location"));
+
 var dateView = _interopRequireWildcard(require("./modules/views/dateTimeVew"));
+
+var locationView = _interopRequireWildcard(require("./modules/views/locationView"));
 
 var _path = require("./modules/configs/path");
 
@@ -220,13 +229,18 @@ var dateController = function dateController() {
   state.date.getMonth(); //render date and time into UI
 
   dateView.renderDate(state.date);
-}; //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
+}; //*** LOCATION CONTROLLER
+
+
+var locationController = function locationController() {}; //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
 
 
 window.addEventListener('load', function () {
   //date and time controller
-  dateController();
+  dateController(); //location controller
+
+  locationController();
 });
 console.log(state);
 
-},{"./modules/configs/path":5,"./modules/models/DateTime":6,"./modules/views/dateTimeVew":7,"@babel/runtime/helpers/interopRequireDefault":3,"@babel/runtime/helpers/interopRequireWildcard":4}]},{},[8]);
+},{"./modules/configs/path":5,"./modules/models/DateTime":6,"./modules/models/Location":7,"./modules/views/dateTimeVew":8,"./modules/views/locationView":9,"@babel/runtime/helpers/interopRequireDefault":3,"@babel/runtime/helpers/interopRequireWildcard":4}]},{},[10]);
