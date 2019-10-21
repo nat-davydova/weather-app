@@ -153,11 +153,29 @@ var _path = require("./../configs/path");
 //render date/time item into the DOM - helper function
 var renderDateItem = function renderDateItem(item, uiElem) {
   uiElem.textContent = item;
+}; //convert 1-digit numbers to 2-digits numbers
+
+
+var twoDigitsConvert = function twoDigitsConvert(elem) {
+  return "0".concat(elem);
 }; //render date and time
 
 
 var renderDate = function renderDate(dateObj) {
-  //render year
+  //converting numbers into 2-digits
+  if (dateObj.date < 10) {
+    dateObj.date = twoDigitsConvert(dateObj.date);
+  }
+
+  if (dateObj.hours < 10) {
+    dateObj.hours = twoDigitsConvert(dateObj.hours);
+  }
+
+  if (dateObj.mins < 10) {
+    dateObj.mins = twoDigitsConvert(dateObj.mins);
+  } //render year
+
+
   renderDateItem(dateObj.year, _path.DOM.date.year); //render month
 
   renderDateItem(dateObj.month, _path.DOM.date.month); //render date

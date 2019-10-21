@@ -6,8 +6,24 @@ const renderDateItem = (item, uiElem) => {
 	uiElem.textContent = item;
 };
 
+//convert 1-digit numbers to 2-digits numbers
+const twoDigitsConvert = (elem) => (`0${elem}`);
+
 //render date and time
 export const renderDate = (dateObj) => {
+
+	//converting numbers into 2-digits
+	if(dateObj.date < 10) {
+		dateObj.date = twoDigitsConvert(dateObj.date);
+	}
+
+	if(dateObj.hours < 10) {
+		dateObj.hours = twoDigitsConvert(dateObj.hours);
+	}
+
+	if(dateObj.mins < 10) {
+		dateObj.mins = twoDigitsConvert(dateObj.mins);
+	}
 
 	//render year
 	renderDateItem(dateObj.year, DOM.date.year);
