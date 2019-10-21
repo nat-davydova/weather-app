@@ -35,7 +35,12 @@ const dateController = () => {
 
 //*** LOCATION CONTROLLER
 const locationController = () => {
-	
+
+	//setting new location
+	state.location = new Location();
+
+	//grabbing location from model
+	state.location.geolocation();
 };
 
 //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
