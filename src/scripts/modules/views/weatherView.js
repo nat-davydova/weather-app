@@ -14,4 +14,6 @@ export const renderWeather = (weatherObj) => {
 	//render humidity
 	renderWeatherItem(`${weatherObj.humidity} %`, DOM.weather.humidity);
 
+	//render pressure
+	renderWeatherItem(`${weatherObj.pressure} hPA`, DOM.weather.pressure);
 };

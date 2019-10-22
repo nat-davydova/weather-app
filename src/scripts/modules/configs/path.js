@@ -19,6 +19,7 @@ export const DOM = {
 
 	weather: {
 		humidity: document.querySelector('.weather__details-value[data-detail-type="humid"]'),
+		pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),
 		wind: document.querySelector('.weather__details-value[data-detail-type="wind"]'),
 	}
 };

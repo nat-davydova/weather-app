@@ -2581,6 +2581,7 @@ var DOM = {
   },
   weather: {
     humidity: document.querySelector('.weather__details-value[data-detail-type="humid"]'),
+    pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),
     wind: document.querySelector('.weather__details-value[data-detail-type="wind"]')
   }
 };
@@ -2916,7 +2917,9 @@ var renderWeather = function renderWeather(weatherObj) {
   //render wind
   renderWeatherItem("".concat(weatherObj.wind, " m/s"), _path.DOM.weather.wind); //render humidity
 
-  renderWeatherItem("".concat(weatherObj.humidity, " %"), _path.DOM.weather.humidity);
+  renderWeatherItem("".concat(weatherObj.humidity, " %"), _path.DOM.weather.humidity); //render pressure
+
+  renderWeatherItem("".concat(weatherObj.pressure, " hPA"), _path.DOM.weather.pressure);
 };
 
 exports.renderWeather = renderWeather;
