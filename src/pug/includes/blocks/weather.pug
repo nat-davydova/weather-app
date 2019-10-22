@@ -32,11 +32,12 @@ mixin weather-details-item(dataType, itemName, itemValue)
                     //weather details item
                     li.weather__details-item
                         strong.weather__details-title Temp
-                        span(data-detail-type="temp").weather__details-value 29°C
+                        span(data-detail-type="temp").weather__details-value
+                        span.weather__details-measure
                         button.weather__temp-switcher.btn.btn-success.ml-2(type="button") F
 
                     +weather-details-item('wind', 'Wind', '')
                     +weather-details-item('pres', 'Pressure', '')
                     +weather-details-item('humid', 'Humidity', '')
                     +weather-details-item('sunr', 'Sunrise', '')
-                    +weather-details-item('suns', 'Sunset', '22:25')
+                    +weather-details-item('suns', 'Sunset', '')

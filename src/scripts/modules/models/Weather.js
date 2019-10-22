@@ -4,8 +4,8 @@ import { weatherApi } from './../configs/apiKeys';
 //*** WEATHER PART
 export default class Weather {
 
-	constructor() {
-
+	constructor(degreesType) {
+		this.degreesType = degreesType;
 	}
 
 	getWeather = async (lat, long) => {

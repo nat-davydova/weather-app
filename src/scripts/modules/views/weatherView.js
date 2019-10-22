@@ -38,4 +38,16 @@ export const renderWeather = (weatherObj) => {
 	const [ sunsHours, sunsMins ] = unixToDate(weatherObj.sunset);
 
 	renderWeatherItem(`${sunsHours}:${sunsMins}`, DOM.weather.sunset);
+
+};
+
+//render temperature
+export const renderTemperature = (currentTemp, degreesType) => {
+
+	const temperature = Math.round(parseFloat(currentTemp));
+
+	renderWeatherItem(`${temperature}°`, DOM.weather.temperature);
+
+	renderWeatherItem(degreesType, DOM.weather.measures);
+
 };

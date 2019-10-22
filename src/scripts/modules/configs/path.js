@@ -19,9 +19,11 @@ export const DOM = {
 
 	weather: {
 		humidity: document.querySelector('.weather__details-value[data-detail-type="humid"]'),
+		measures: document.querySelector('.weather__details-measure'),
 		pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),
 		sunrise: document.querySelector('.weather__details-value[data-detail-type="sunr"]'),
 		sunset: document.querySelector('.weather__details-value[data-detail-type="suns"]'),
+		temperature: document.querySelector('.weather__details-value[data-detail-type="temp"]'),
 		wind: document.querySelector('.weather__details-value[data-detail-type="wind"]'),
 	}
 };

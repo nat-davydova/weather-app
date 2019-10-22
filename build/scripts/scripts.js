@@ -2637,9 +2637,11 @@ var DOM = {
   },
   weather: {
     humidity: document.querySelector('.weather__details-value[data-detail-type="humid"]'),
+    measures: document.querySelector('.weather__details-measure'),
     pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),
     sunrise: document.querySelector('.weather__details-value[data-detail-type="sunr"]'),
     sunset: document.querySelector('.weather__details-value[data-detail-type="suns"]'),
+    temperature: document.querySelector('.weather__details-value[data-detail-type="temp"]'),
     wind: document.querySelector('.weather__details-value[data-detail-type="wind"]')
   }
 };
@@ -2823,7 +2825,7 @@ var _axios = _interopRequireDefault(require("axios"));
 var _apiKeys = require("./../configs/apiKeys");
 
 //*** WEATHER PART
-var Weather = function Weather() {
+var Weather = function Weather(degreesType) {
   var _this = this;
 
   (0, _classCallCheck2["default"])(this, Weather);
@@ -2882,6 +2884,7 @@ var Weather = function Weather() {
       return _ref.apply(this, arguments);
     };
   }());
+  this.degreesType = degreesType;
 };
 
 exports["default"] = Weather;
@@ -2963,7 +2966,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.renderWeather = void 0;
+exports.renderTemperature = exports.renderWeather = void 0;
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
@@ -3004,9 +3007,18 @@ var renderWeather = function renderWeather(weatherObj) {
       sunsMins = _unixToDate4[1];
 
   renderWeatherItem("".concat(sunsHours, ":").concat(sunsMins), _path.DOM.weather.sunset);
-};
+}; //render temperature
+
 
 exports.renderWeather = renderWeather;
+
+var renderTemperature = function renderTemperature(currentTemp, degreesType) {
+  var temperature = Math.round(parseFloat(currentTemp));
+  renderWeatherItem("".concat(temperature, "\xB0"), _path.DOM.weather.temperature);
+  renderWeatherItem(degreesType, _path.DOM.weather.measures);
+};
+
+exports.renderTemperature = renderTemperature;
 
 },{"./../configs/path":40,"@babel/runtime/helpers/interopRequireDefault":5,"@babel/runtime/helpers/slicedToArray":9}],48:[function(require,module,exports){
 "use strict";
@@ -3113,15 +3125,17 @@ function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             //setting new Weather class
-            state.weather = new _Weather["default"]();
+            state.weather = new _Weather["default"]('C');
             _context2.next = 3;
             return state.weather.getWeather(state.location.lat, state.location["long"]);
 
           case 3:
-            //render weather object
-            weatherView.renderWeather(state.weather);
+            //render weather object into UI (except temperature)
+            weatherView.renderWeather(state.weather); //render temperature into UI
 
-          case 4:
+            weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
+
+          case 5:
           case "end":
             return _context2.stop();
         }

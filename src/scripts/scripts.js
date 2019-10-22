@@ -72,12 +72,15 @@ const locationController = async () => {
 const weatherController = async () => {
 
 	//setting new Weather class
-	state.weather = new Weather();
+	state.weather = new Weather('C');
 
 	await state.weather.getWeather(state.location.lat, state.location.long);
 
-	//render weather object
+	//render weather object into UI (except temperature)
 	weatherView.renderWeather(state.weather);
+
+	//render temperature into UI
+	weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
 };
 
 //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
