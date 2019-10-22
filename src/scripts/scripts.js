@@ -8,6 +8,9 @@ import Location from "./modules/models/Location";
 import * as dateView from './modules/views/dateTimeVew';
 import * as locationView from './modules/views/locationView';
 
+//import utils
+import { handleError } from "./modules/configs/utils";
+
 //import configs
 import { DOM } from './modules/configs/path';
 
@@ -42,8 +45,18 @@ const locationController = async () => {
 	//grabbing location from model
 	await state.location.geolocation();
 
-	//render location into UI
-	locationView.renderLocation(state.location);
+	//rendering UI (error text or location)
+	if(state.location.locationError) {
+
+		//render error text
+		handleError(state.location.locationError, DOM.location.content);
+
+	} else {
+
+		//render location into UI
+		locationView.renderLocation(state.location);
+
+	}
 };
 
 //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)

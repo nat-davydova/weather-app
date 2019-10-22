@@ -2582,6 +2582,20 @@ exports.DOM = DOM;
 },{}],37:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.handleError = void 0;
+
+var handleError = function handleError(errorText, placeToRender) {
+  placeToRender.textContent = errorText;
+};
+
+exports.handleError = handleError;
+
+},{}],38:[function(require,module,exports){
+"use strict";
+
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
@@ -2615,7 +2629,7 @@ var DateTime = function DateTime() {
 exports["default"] = DateTime;
 ;
 
-},{"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/defineProperty":3,"@babel/runtime/helpers/interopRequireDefault":4}],38:[function(require,module,exports){
+},{"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/defineProperty":3,"@babel/runtime/helpers/interopRequireDefault":4}],39:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -2697,7 +2711,7 @@ var Location = function Location() {
 exports["default"] = Location;
 ;
 
-},{"./../configs/apiKeys":35,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/defineProperty":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/regenerator":6,"axios":7}],39:[function(require,module,exports){
+},{"./../configs/apiKeys":35,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/defineProperty":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/regenerator":6,"axios":7}],40:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2747,7 +2761,7 @@ var renderDate = function renderDate(dateObj) {
 
 exports.renderDate = renderDate;
 
-},{"./../configs/path":36}],40:[function(require,module,exports){
+},{"./../configs/path":36}],41:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2765,7 +2779,7 @@ var renderLocation = function renderLocation(locationObj) {
 
 exports.renderLocation = renderLocation;
 
-},{"./../configs/path":36}],41:[function(require,module,exports){
+},{"./../configs/path":36}],42:[function(require,module,exports){
 "use strict";
 
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
@@ -2784,11 +2798,14 @@ var dateView = _interopRequireWildcard(require("./modules/views/dateTimeVew"));
 
 var locationView = _interopRequireWildcard(require("./modules/views/locationView"));
 
+var _utils = require("./modules/configs/utils");
+
 var _path = require("./modules/configs/path");
 
 //APP IMPORTS
 //import models
 //import views
+//import utils
 //import configs
 //state
 //here stored:
@@ -2824,8 +2841,14 @@ function () {
             return state.location.geolocation();
 
           case 3:
-            //render location into UI
-            locationView.renderLocation(state.location);
+            //rendering UI (error text or location)
+            if (state.location.locationError) {
+              //render error text
+              (0, _utils.handleError)(state.location.locationError, _path.DOM.location.content);
+            } else {
+              //render location into UI
+              locationView.renderLocation(state.location);
+            }
 
           case 4:
           case "end":
@@ -2849,4 +2872,4 @@ window.addEventListener('load', function () {
 });
 console.log(state);
 
-},{"./modules/configs/path":36,"./modules/models/DateTime":37,"./modules/models/Location":38,"./modules/views/dateTimeVew":39,"./modules/views/locationView":40,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/interopRequireWildcard":5,"@babel/runtime/regenerator":6}]},{},[41]);
+},{"./modules/configs/path":36,"./modules/configs/utils":37,"./modules/models/DateTime":38,"./modules/models/Location":39,"./modules/views/dateTimeVew":40,"./modules/views/locationView":41,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/interopRequireWildcard":5,"@babel/runtime/regenerator":6}]},{},[42]);
