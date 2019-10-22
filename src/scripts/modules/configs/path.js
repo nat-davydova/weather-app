@@ -20,6 +20,7 @@ export const DOM = {
 	weather: {
 		convertBtn: document.querySelector('.weather__temp-switcher'),
 		humidity: document.querySelector('.weather__details-value[data-detail-type="humid"]'),
+		icon: document.querySelector('.weather__icon'),
 		measures: document.querySelector('.weather__details-measure'),
 		pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),
 		sunrise: document.querySelector('.weather__details-value[data-detail-type="sunr"]'),

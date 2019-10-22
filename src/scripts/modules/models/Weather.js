@@ -8,6 +8,19 @@ export default class Weather {
 		this.degreesType = degreesType;
 	}
 
+	//convert time elems from unix to readable date
+	static convertFromUnix = (unix) => {
+
+		const date = new Date(unix * 1000);
+
+		const hours = date.getHours();
+
+		const mins =  date.getMinutes();
+
+		return [hours, mins];
+
+	};
+
 	getWeather = async (lat, long) => {
 
 		try {
@@ -22,8 +35,8 @@ export default class Weather {
 			this.wind = weatherCast.data.wind.speed; //in m/s
 			this.pressure = weatherCast.data.main.pressure; //in hPA
 			this.temperature = weatherCast.data.main.temp; //in Celcius
-			this.sunrise = weatherCast.data.sys.sunrise; //UTC
-			this.sunset = weatherCast.data.sys.sunset; //UTC
+			this.sunrise = Weather.convertFromUnix(weatherCast.data.sys.sunrise); //initially in unix
+			this.sunset = Weather.convertFromUnix(weatherCast.data.sys.sunset); //initially in unix
 
 			console.log(weatherCast);
 
@@ -85,7 +98,7 @@ export default class Weather {
 
 		} else if(this.idWeather === 800) {
 
-			this.weatherTitle = 'Clear Clouds'
+			this.weatherTitle = 'Clear Sky'
 
 		} else if(this.idWeather === 801) {
 

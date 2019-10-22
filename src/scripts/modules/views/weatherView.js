@@ -6,19 +6,68 @@ const renderWeatherItem = (item, uiElem) => {
 	uiElem.textContent = item;
 };
 
-//convert unix time to readable Time
-const unixToDate = unix => {
+//pick proper weather icon based on weather title and time
+const weatherIcon = (weatherType, localHours, sunset) => {
 
-	const date = new Date(unix * 1000);
+	let icon;
 
-	const hours = date.getHours();
+	switch(weatherType) {
 
-	const mins =  date.getMinutes();
+		case 'Thunderstorm':
+			icon = 'thunderstorm';
+			break;
 
-	return [hours, mins];
+		case 'Rain':
+			icon = 'rain';
+			break;
+
+		case 'Shower Rain':
+			icon = 'shower-rain';
+			break;
+
+		case 'Snow':
+			icon = 'snow';
+			break;
+
+		case 'Fog':
+			icon = 'mist';
+			break;
+
+		case 'Clear Sky':
+			if (localHours < sunset) {
+				icon = 'clear-sky'
+			} else {
+				icon = 'clear-sky-night'
+			}
+			break;
+
+		case 'Few Clouds':
+			if (localHours < sunset) {
+				icon = 'few-clouds'
+			} else {
+				icon = 'few-clouds-night'
+			}
+			break;
+
+		case 'Scattered Clouds':
+			icon = 'scattered-clouds';
+			break;
+
+		case 'Broken Clouds':
+			icon = 'broken-clouds';
+			break;
+
+		default:
+			icon = 'thermometer';
+			break;
+	}
+
+	return icon;
+
 };
 
-export const renderWeather = (weatherObj) => {
+//render weather
+export const renderWeather = (weatherObj, dateObj) => {
 
 	//render wind
 	renderWeatherItem(`${weatherObj.wind} m/s`, DOM.weather.wind);
@@ -30,17 +79,28 @@ export const renderWeather = (weatherObj) => {
 	renderWeatherItem(`${weatherObj.pressure} hPA`, DOM.weather.pressure);
 
 	//render sunrise
-	const [ sunrHours, sunrMins ] = unixToDate(weatherObj.sunrise);
+	const [ sunrHours, sunrMins ] = weatherObj.sunrise;
 
 	renderWeatherItem(`${sunrHours}:${sunrMins}`, DOM.weather.sunrise);
 
 	//render sunset
-	const [ sunsHours, sunsMins ] = unixToDate(weatherObj.sunset);
+	const [ sunsHours, sunsMins ] = weatherObj.sunset;
 
 	renderWeatherItem(`${sunsHours}:${sunsMins}`, DOM.weather.sunset);
 
 	//render weather title
 	renderWeatherItem(weatherObj.weatherTitle, DOM.weather.title);
+
+	//render icon
+	const iconName = weatherIcon(weatherObj.weatherTitle, dateObj.hours, weatherObj.sunset[0]);
+
+	const icon = `
+		<svg>
+         	<use xlink:href="./assets/sprites/sprites-colored/svg/sprite.symbol.svg#${iconName}" >
+		</svg>
+	`;
+
+	DOM.weather.icon.insertAdjacentHTML("beforeend", icon);
 
 };
 

@@ -2638,6 +2638,7 @@ var DOM = {
   weather: {
     convertBtn: document.querySelector('.weather__temp-switcher'),
     humidity: document.querySelector('.weather__details-value[data-detail-type="humid"]'),
+    icon: document.querySelector('.weather__icon'),
     measures: document.querySelector('.weather__details-measure'),
     pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),
     sunrise: document.querySelector('.weather__details-value[data-detail-type="sunr"]'),
@@ -2859,9 +2860,9 @@ var Weather = function Weather(degreesType) {
 
               _this.temperature = weatherCast.data.main.temp; //in Celcius
 
-              _this.sunrise = weatherCast.data.sys.sunrise; //UTC
+              _this.sunrise = Weather.convertFromUnix(weatherCast.data.sys.sunrise); //initially in unix
 
-              _this.sunset = weatherCast.data.sys.sunset; //UTC
+              _this.sunset = Weather.convertFromUnix(weatherCast.data.sys.sunset); //initially in unix
 
               console.log(weatherCast);
               _context.next = 18;
@@ -2910,7 +2911,7 @@ var Weather = function Weather(degreesType) {
     } else if (_this.idWeather >= 701 && _this.idWeather <= 781) {
       _this.weatherTitle = 'Fog';
     } else if (_this.idWeather === 800) {
-      _this.weatherTitle = 'Clear Clouds';
+      _this.weatherTitle = 'Clear Sky';
     } else if (_this.idWeather === 801) {
       _this.weatherTitle = 'Few Clouds';
     } else if (_this.idWeather === 802) {
@@ -2920,9 +2921,16 @@ var Weather = function Weather(degreesType) {
     }
   });
   this.degreesType = degreesType;
-};
+} //convert time elems from unix to readable date
+;
 
 exports["default"] = Weather;
+(0, _defineProperty2["default"])(Weather, "convertFromUnix", function (unix) {
+  var date = new Date(unix * 1000);
+  var hours = date.getHours();
+  var mins = date.getMinutes();
+  return [hours, mins];
+});
 ;
 
 },{"./../configs/apiKeys":39,"@babel/runtime/helpers/asyncToGenerator":2,"@babel/runtime/helpers/classCallCheck":3,"@babel/runtime/helpers/defineProperty":4,"@babel/runtime/helpers/interopRequireDefault":5,"@babel/runtime/regenerator":10,"axios":11}],45:[function(require,module,exports){
@@ -3011,17 +3019,69 @@ var _path = require("./../configs/path");
 //render weather item into the DOM - helper function
 var renderWeatherItem = function renderWeatherItem(item, uiElem) {
   uiElem.textContent = item;
-}; //convert unix time to readable Time
+}; //pick proper weather icon based on weather title and time
 
 
-var unixToDate = function unixToDate(unix) {
-  var date = new Date(unix * 1000);
-  var hours = date.getHours();
-  var mins = date.getMinutes();
-  return [hours, mins];
-};
+var weatherIcon = function weatherIcon(weatherType, localHours, sunset) {
+  var icon;
 
-var renderWeather = function renderWeather(weatherObj) {
+  switch (weatherType) {
+    case 'Thunderstorm':
+      icon = 'thunderstorm';
+      break;
+
+    case 'Rain':
+      icon = 'rain';
+      break;
+
+    case 'Shower Rain':
+      icon = 'shower-rain';
+      break;
+
+    case 'Snow':
+      icon = 'snow';
+      break;
+
+    case 'Fog':
+      icon = 'mist';
+      break;
+
+    case 'Clear Sky':
+      if (localHours < sunset) {
+        icon = 'clear-sky';
+      } else {
+        icon = 'clear-sky-night';
+      }
+
+      break;
+
+    case 'Few Clouds':
+      if (localHours < sunset) {
+        icon = 'few-clouds';
+      } else {
+        icon = 'few-clouds-night';
+      }
+
+      break;
+
+    case 'Scattered Clouds':
+      icon = 'scattered-clouds';
+      break;
+
+    case 'Broken Clouds':
+      icon = 'broken-clouds';
+      break;
+
+    default:
+      icon = 'thermometer';
+      break;
+  }
+
+  return icon;
+}; //render weather
+
+
+var renderWeather = function renderWeather(weatherObj, dateObj) {
   //render wind
   renderWeatherItem("".concat(weatherObj.wind, " m/s"), _path.DOM.weather.wind); //render humidity
 
@@ -3029,21 +3089,24 @@ var renderWeather = function renderWeather(weatherObj) {
 
   renderWeatherItem("".concat(weatherObj.pressure, " hPA"), _path.DOM.weather.pressure); //render sunrise
 
-  var _unixToDate = unixToDate(weatherObj.sunrise),
-      _unixToDate2 = (0, _slicedToArray2["default"])(_unixToDate, 2),
-      sunrHours = _unixToDate2[0],
-      sunrMins = _unixToDate2[1];
+  var _weatherObj$sunrise = (0, _slicedToArray2["default"])(weatherObj.sunrise, 2),
+      sunrHours = _weatherObj$sunrise[0],
+      sunrMins = _weatherObj$sunrise[1];
 
   renderWeatherItem("".concat(sunrHours, ":").concat(sunrMins), _path.DOM.weather.sunrise); //render sunset
 
-  var _unixToDate3 = unixToDate(weatherObj.sunset),
-      _unixToDate4 = (0, _slicedToArray2["default"])(_unixToDate3, 2),
-      sunsHours = _unixToDate4[0],
-      sunsMins = _unixToDate4[1];
+  var _weatherObj$sunset = (0, _slicedToArray2["default"])(weatherObj.sunset, 2),
+      sunsHours = _weatherObj$sunset[0],
+      sunsMins = _weatherObj$sunset[1];
 
   renderWeatherItem("".concat(sunsHours, ":").concat(sunsMins), _path.DOM.weather.sunset); //render weather title
 
-  renderWeatherItem(weatherObj.weatherTitle, _path.DOM.weather.title);
+  renderWeatherItem(weatherObj.weatherTitle, _path.DOM.weather.title); //render icon
+
+  var iconName = weatherIcon(weatherObj.weatherTitle, dateObj.hours, weatherObj.sunset[0]);
+  var icon = "\n\t\t<svg>\n         \t<use xlink:href=\"./assets/sprites/sprites-colored/svg/sprite.symbol.svg#".concat(iconName, "\" >\n\t\t</svg>\n\t");
+
+  _path.DOM.weather.icon.insertAdjacentHTML("beforeend", icon);
 }; //render temperature
 
 
@@ -3174,7 +3237,7 @@ function () {
             //create weather title
             state.weather.weatherTitle(); //render weather object into UI (except temperature)
 
-            weatherView.renderWeather(state.weather); //render temperature into UI
+            weatherView.renderWeather(state.weather, state.date); //render temperature into UI
 
             weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
 

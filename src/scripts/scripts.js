@@ -80,7 +80,7 @@ const weatherController = async () => {
 	state.weather.weatherTitle();
 
 	//render weather object into UI (except temperature)
-	weatherView.renderWeather(state.weather);
+	weatherView.renderWeather(state.weather, state.date);
 
 	//render temperature into UI
 	weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
