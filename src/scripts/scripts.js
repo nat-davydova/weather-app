@@ -97,4 +97,17 @@ window.addEventListener('load', async () => {
 
 });
 
+//*** CLICK TO CONVERT TEMPERATURE BTN HOLDER
+const convertBtn = DOM.weather.convertBtn;
+
+convertBtn.addEventListener('click', () => {
+
+	//convert temperature
+	state.weather.convertTemperature();
+
+	//render temperature into UI
+	weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
+
+});
+
 console.log(state);

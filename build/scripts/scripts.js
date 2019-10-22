@@ -2636,6 +2636,7 @@ var DOM = {
     preloader: document.querySelector('.location__preloader')
   },
   weather: {
+    convertBtn: document.querySelector('.weather__temp-switcher'),
     humidity: document.querySelector('.weather__details-value[data-detail-type="humid"]'),
     measures: document.querySelector('.weather__details-measure'),
     pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),
@@ -2884,6 +2885,19 @@ var Weather = function Weather(degreesType) {
       return _ref.apply(this, arguments);
     };
   }());
+  (0, _defineProperty2["default"])(this, "convertTemperature", function () {
+    var newTemperature;
+
+    if (_this.degreesType === 'C') {
+      newTemperature = _this.temperature * 9 / 5 + 32;
+      _this.degreesType = 'F';
+    } else {
+      newTemperature = (_this.temperature - 32) * 5 / 9;
+      _this.degreesType = 'C';
+    }
+
+    _this.temperature = newTemperature;
+  });
   this.degreesType = degreesType;
 };
 
@@ -3013,9 +3027,13 @@ var renderWeather = function renderWeather(weatherObj) {
 exports.renderWeather = renderWeather;
 
 var renderTemperature = function renderTemperature(currentTemp, degreesType) {
-  var temperature = Math.round(parseFloat(currentTemp));
-  renderWeatherItem("".concat(temperature, "\xB0"), _path.DOM.weather.temperature);
-  renderWeatherItem(degreesType, _path.DOM.weather.measures);
+  var temperature = Math.round(parseFloat(currentTemp)); //render temperature
+
+  renderWeatherItem("".concat(temperature, "\xB0"), _path.DOM.weather.temperature); //render degrees type
+
+  renderWeatherItem(degreesType, _path.DOM.weather.measures); //switch label on converting btn
+
+  degreesType === 'C' ? _path.DOM.weather.convertBtn.textContent = 'F' : _path.DOM.weather.convertBtn.textContent = 'C';
 };
 
 exports.renderTemperature = renderTemperature;
@@ -3174,7 +3192,15 @@ _regenerator["default"].mark(function _callee3() {
       }
     }
   }, _callee3);
-})));
+}))); //*** CLICK TO CONVERT TEMPERATURE BTN HOLDER
+
+var convertBtn = _path.DOM.weather.convertBtn;
+convertBtn.addEventListener('click', function () {
+  //convert temperature
+  state.weather.convertTemperature(); //render temperature into UI
+
+  weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
+});
 console.log(state);
 
 },{"./modules/configs/path":40,"./modules/configs/utils":41,"./modules/models/DateTime":42,"./modules/models/Location":43,"./modules/models/Weather":44,"./modules/views/dateTimeVew":45,"./modules/views/locationView":46,"./modules/views/weatherView":47,"@babel/runtime/helpers/asyncToGenerator":2,"@babel/runtime/helpers/interopRequireDefault":5,"@babel/runtime/helpers/interopRequireWildcard":6,"@babel/runtime/regenerator":10}]},{},[48]);

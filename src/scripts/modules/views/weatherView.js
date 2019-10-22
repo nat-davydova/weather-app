@@ -46,8 +46,13 @@ export const renderTemperature = (currentTemp, degreesType) => {
 
 	const temperature = Math.round(parseFloat(currentTemp));
 
+	//render temperature
 	renderWeatherItem(`${temperature}°`, DOM.weather.temperature);
 
+	//render degrees type
 	renderWeatherItem(degreesType, DOM.weather.measures);
+
+	//switch label on converting btn
+	degreesType === 'C' ? DOM.weather.convertBtn.textContent = 'F' : DOM.weather.convertBtn.textContent = 'C';
 
 };

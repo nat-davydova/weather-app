@@ -18,6 +18,7 @@ export const DOM = {
 	},
 
 	weather: {
+		convertBtn: document.querySelector('.weather__temp-switcher'),
 		humidity: document.querySelector('.weather__details-value[data-detail-type="humid"]'),
 		measures: document.querySelector('.weather__details-measure'),
 		pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),

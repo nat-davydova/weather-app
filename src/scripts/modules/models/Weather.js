@@ -39,4 +39,26 @@ export default class Weather {
 
 	};
 
+	convertTemperature = () => {
+
+		let newTemperature;
+
+		if (this.degreesType === 'C') {
+
+			newTemperature = (this.temperature * 9/5) + 32;
+
+			this.degreesType = 'F';
+
+		} else {
+
+			newTemperature = (this.temperature - 32) * 5/9;
+
+			this.degreesType = 'C';
+
+		}
+
+		this.temperature = newTemperature;
+
+	};
+
 };
