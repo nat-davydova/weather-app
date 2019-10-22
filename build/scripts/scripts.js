@@ -2639,6 +2639,7 @@ var DOM = {
     humidity: document.querySelector('.weather__details-value[data-detail-type="humid"]'),
     pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),
     sunrise: document.querySelector('.weather__details-value[data-detail-type="sunr"]'),
+    sunset: document.querySelector('.weather__details-value[data-detail-type="suns"]'),
     wind: document.querySelector('.weather__details-value[data-detail-type="wind"]')
   }
 };
@@ -2995,7 +2996,14 @@ var renderWeather = function renderWeather(weatherObj) {
       sunrHours = _unixToDate2[0],
       sunrMins = _unixToDate2[1];
 
-  renderWeatherItem("".concat(sunrHours, ":").concat(sunrMins), _path.DOM.weather.sunrise);
+  renderWeatherItem("".concat(sunrHours, ":").concat(sunrMins), _path.DOM.weather.sunrise); //render sunset
+
+  var _unixToDate3 = unixToDate(weatherObj.sunset),
+      _unixToDate4 = (0, _slicedToArray2["default"])(_unixToDate3, 2),
+      sunsHours = _unixToDate4[0],
+      sunsMins = _unixToDate4[1];
+
+  renderWeatherItem("".concat(sunsHours, ":").concat(sunsMins), _path.DOM.weather.sunset);
 };
 
 exports.renderWeather = renderWeather;

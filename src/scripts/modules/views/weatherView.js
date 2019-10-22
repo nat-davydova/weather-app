@@ -33,4 +33,9 @@ export const renderWeather = (weatherObj) => {
 	const [ sunrHours, sunrMins ] = unixToDate(weatherObj.sunrise);
 
 	renderWeatherItem(`${sunrHours}:${sunrMins}`, DOM.weather.sunrise);
+
+	//render sunset
+	const [ sunsHours, sunsMins ] = unixToDate(weatherObj.sunset);
+
+	renderWeatherItem(`${sunsHours}:${sunsMins}`, DOM.weather.sunset);
 };
