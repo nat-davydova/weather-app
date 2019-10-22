@@ -2585,13 +2585,22 @@ exports.DOM = DOM;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.handleError = void 0;
+exports.clearUI = exports.handleError = void 0;
 
+//rendering errors in the UI
 var handleError = function handleError(errorText, placeToRender) {
   placeToRender.textContent = errorText;
-};
+}; //removing content from the UI
+
 
 exports.handleError = handleError;
+
+var clearUI = function clearUI(placeToClear) {
+  placeToClear.innerHTML = '';
+  placeToClear.textContent = '';
+};
+
+exports.clearUI = clearUI;
 
 },{}],38:[function(require,module,exports){
 "use strict";
@@ -2835,12 +2844,14 @@ function () {
         switch (_context.prev = _context.next) {
           case 0:
             //setting new location
-            state.location = new _Location["default"](); //grabbing location from model
+            state.location = new _Location["default"](); //prepare UI before rendering anything (clearing content, showing preloader)
 
-            _context.next = 3;
+            (0, _utils.clearUI)(_path.DOM.location.content); //grabbing location from model
+
+            _context.next = 4;
             return state.location.geolocation();
 
-          case 3:
+          case 4:
             //rendering UI (error text or location)
             if (state.location.locationError) {
               //render error text
@@ -2850,7 +2861,7 @@ function () {
               locationView.renderLocation(state.location);
             }
 
-          case 4:
+          case 5:
           case "end":
             return _context.stop();
         }
