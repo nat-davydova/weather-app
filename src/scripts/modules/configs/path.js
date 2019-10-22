@@ -13,6 +13,7 @@ export const DOM = {
 	},
 
 	location: {
-		content: document.querySelector('.location__content')
+		content: document.querySelector('.location__content'),
+		preloader: document.querySelector('.location__preloader')
 	}
 };

@@ -9,7 +9,7 @@ import * as dateView from './modules/views/dateTimeVew';
 import * as locationView from './modules/views/locationView';
 
 //import utils
-import { handleError, clearUI } from "./modules/configs/utils";
+import {handleError, clearUI, showPreloader} from "./modules/configs/utils";
 
 //import configs
 import { DOM } from './modules/configs/path';
@@ -44,6 +44,7 @@ const locationController = async () => {
 
 	//prepare UI before rendering anything (clearing content, showing preloader)
 	clearUI(DOM.location.content);
+	showPreloader(DOM.location.preloader);
 
 	//grabbing location from model
 	await state.location.geolocation();

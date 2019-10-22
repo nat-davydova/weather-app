@@ -6,9 +6,15 @@ export const handleError = (errorText, placeToRender) => {
 };
 
 //removing content from the UI
-export const clearUI = (placeToClear) => {
+export const clearUI = placeToClear => {
 
 	placeToClear.innerHTML = '';
 	placeToClear.textContent = '';
 
+};
+
+//show preloader
+
+export const showPreloader = preloader => {
+	preloader.classList.remove('js-hidden');
 };

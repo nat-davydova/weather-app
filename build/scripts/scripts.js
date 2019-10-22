@@ -2574,7 +2574,8 @@ var DOM = {
     mins: document.querySelector('.time__minutes')
   },
   location: {
-    content: document.querySelector('.location__content')
+    content: document.querySelector('.location__content'),
+    preloader: document.querySelector('.location__preloader')
   }
 };
 exports.DOM = DOM;
@@ -2585,7 +2586,7 @@ exports.DOM = DOM;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.clearUI = exports.handleError = void 0;
+exports.showPreloader = exports.clearUI = exports.handleError = void 0;
 
 //rendering errors in the UI
 var handleError = function handleError(errorText, placeToRender) {
@@ -2598,9 +2599,16 @@ exports.handleError = handleError;
 var clearUI = function clearUI(placeToClear) {
   placeToClear.innerHTML = '';
   placeToClear.textContent = '';
-};
+}; //show preloader
+
 
 exports.clearUI = clearUI;
+
+var showPreloader = function showPreloader(preloader) {
+  preloader.classList.remove('js-hidden');
+};
+
+exports.showPreloader = showPreloader;
 
 },{}],38:[function(require,module,exports){
 "use strict";
@@ -2846,12 +2854,13 @@ function () {
             //setting new location
             state.location = new _Location["default"](); //prepare UI before rendering anything (clearing content, showing preloader)
 
-            (0, _utils.clearUI)(_path.DOM.location.content); //grabbing location from model
+            (0, _utils.clearUI)(_path.DOM.location.content);
+            (0, _utils.showPreloader)(_path.DOM.location.preloader); //grabbing location from model
 
-            _context.next = 4;
+            _context.next = 5;
             return state.location.geolocation();
 
-          case 4:
+          case 5:
             //rendering UI (error text or location)
             if (state.location.locationError) {
               //render error text
@@ -2861,7 +2870,7 @@ function () {
               locationView.renderLocation(state.location);
             }
 
-          case 5:
+          case 6:
           case "end":
             return _context.stop();
         }
