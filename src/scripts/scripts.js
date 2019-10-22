@@ -44,9 +44,8 @@ const locationController = async () => {
 	//setting new location
 	state.location = new Location();
 
-	//prepare UI before rendering anything (clearing content, showing preloader)
+	//prepare UI before rendering anything (clearing content)
 	clearUI(DOM.location.content);
-	showPreloader(DOM.location.preloader);
 
 	//grabbing location from model
 	await state.location.geolocation();
@@ -74,8 +73,8 @@ const weatherController = async () => {
 	//setting new Weather class
 	state.weather = new Weather('C');
 
-	//prepare UI before rendering anything (showing preloader)
-	showPreloader(DOM.weather.preloader);
+	//prepare UI before rendering anything (clear icon block)
+	clearUI(DOM.weather.icon);
 
 	//grab weather info
 	await state.weather.getWeather(state.location.lat, state.location.long);
@@ -104,8 +103,8 @@ const weatherController = async () => {
 
 };
 
-//*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
-window.addEventListener('load', async () => {
+//*** INIT APP FUNCTION
+const initApp = async () => {
 
 	//date and time controller
 	dateController();
@@ -115,6 +114,12 @@ window.addEventListener('load', async () => {
 
 	//weather controller
 	await weatherController();
+};
+
+//*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
+window.addEventListener('load', () => {
+
+	initApp();
 
 });
 
@@ -131,4 +136,7 @@ convertBtn.addEventListener('click', () => {
 
 });
 
-console.log(state);
+//*** RELOAD BTN CLICK HANDLER
+const reloadBtn = DOM.reload;
+
+reloadBtn.addEventListener('click', initApp);

@@ -2648,7 +2648,8 @@ var DOM = {
     temperature: document.querySelector('.weather__details-value[data-detail-type="temp"]'),
     title: document.querySelector('.weather__title'),
     wind: document.querySelector('.weather__details-value[data-detail-type="wind"]')
-  }
+  },
+  reload: document.querySelector('.reload-weather__btn')
 };
 exports.DOM = DOM;
 
@@ -3186,15 +3187,14 @@ function () {
         switch (_context.prev = _context.next) {
           case 0:
             //setting new location
-            state.location = new _Location["default"](); //prepare UI before rendering anything (clearing content, showing preloader)
+            state.location = new _Location["default"](); //prepare UI before rendering anything (clearing content)
 
-            (0, _utils.clearUI)(_path.DOM.location.content);
-            (0, _utils.showPreloader)(_path.DOM.location.preloader); //grabbing location from model
+            (0, _utils.clearUI)(_path.DOM.location.content); //grabbing location from model
 
-            _context.next = 5;
+            _context.next = 4;
             return state.location.geolocation();
 
-          case 5:
+          case 4:
             //hide loader
             (0, _utils.hidePreloader)(_path.DOM.location.preloader); //rendering UI (error text or location)
 
@@ -3206,7 +3206,7 @@ function () {
               locationView.renderLocation(state.location);
             }
 
-          case 7:
+          case 6:
           case "end":
             return _context.stop();
         }
@@ -3231,9 +3231,9 @@ function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             //setting new Weather class
-            state.weather = new _Weather["default"]('C'); //prepare UI before rendering anything (showing preloader)
+            state.weather = new _Weather["default"]('C'); //prepare UI before rendering anything (clear icon block)
 
-            (0, _utils.showPreloader)(_path.DOM.weather.preloader); //grab weather info
+            (0, _utils.clearUI)(_path.DOM.weather.icon); //grab weather info
 
             _context2.next = 4;
             return state.weather.getWeather(state.location.lat, state.location["long"]);
@@ -3265,35 +3265,46 @@ function () {
   return function weatherController() {
     return _ref2.apply(this, arguments);
   };
+}(); //*** INIT APP FUNCTION
+
+
+var initApp =
+/*#__PURE__*/
+function () {
+  var _ref3 = (0, _asyncToGenerator2["default"])(
+  /*#__PURE__*/
+  _regenerator["default"].mark(function _callee3() {
+    return _regenerator["default"].wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            //date and time controller
+            dateController(); //location controller
+
+            _context3.next = 3;
+            return locationController();
+
+          case 3:
+            _context3.next = 5;
+            return weatherController();
+
+          case 5:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function initApp() {
+    return _ref3.apply(this, arguments);
+  };
 }(); //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
 
 
-window.addEventListener('load',
-/*#__PURE__*/
-(0, _asyncToGenerator2["default"])(
-/*#__PURE__*/
-_regenerator["default"].mark(function _callee3() {
-  return _regenerator["default"].wrap(function _callee3$(_context3) {
-    while (1) {
-      switch (_context3.prev = _context3.next) {
-        case 0:
-          //date and time controller
-          dateController(); //location controller
-
-          _context3.next = 3;
-          return locationController();
-
-        case 3:
-          _context3.next = 5;
-          return weatherController();
-
-        case 5:
-        case "end":
-          return _context3.stop();
-      }
-    }
-  }, _callee3);
-}))); //*** CLICK TO CONVERT TEMPERATURE BTN HOLDER
+window.addEventListener('load', function () {
+  initApp();
+}); //*** CLICK TO CONVERT TEMPERATURE BTN HOLDER
 
 var convertBtn = _path.DOM.weather.convertBtn;
 convertBtn.addEventListener('click', function () {
@@ -3301,7 +3312,9 @@ convertBtn.addEventListener('click', function () {
   state.weather.convertTemperature(); //render temperature into UI
 
   weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
-});
-console.log(state);
+}); //*** RELOAD BTN CLICK HANDLER
+
+var reloadBtn = _path.DOM.reload;
+reloadBtn.addEventListener('click', initApp);
 
 },{"./modules/configs/path":40,"./modules/configs/utils":41,"./modules/models/DateTime":42,"./modules/models/Location":43,"./modules/models/Weather":44,"./modules/views/dateTimeVew":45,"./modules/views/locationView":46,"./modules/views/weatherView":47,"@babel/runtime/helpers/asyncToGenerator":2,"@babel/runtime/helpers/interopRequireDefault":5,"@babel/runtime/helpers/interopRequireWildcard":6,"@babel/runtime/regenerator":10}]},{},[48]);

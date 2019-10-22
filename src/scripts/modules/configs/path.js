@@ -30,5 +30,7 @@ export const DOM = {
 		temperature: document.querySelector('.weather__details-value[data-detail-type="temp"]'),
 		title: document.querySelector('.weather__title'),
 		wind: document.querySelector('.weather__details-value[data-detail-type="wind"]'),
-	}
+	},
+
+	reload: document.querySelector('.reload-weather__btn')
 };
