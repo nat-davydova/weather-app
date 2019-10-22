@@ -15,5 +15,9 @@ export const DOM = {
 	location: {
 		content: document.querySelector('.location__content'),
 		preloader: document.querySelector('.location__preloader')
+	},
+
+	weather: {
+		wind: document.querySelector('.weather__details-value[data-detail-type="wind"]'),
 	}
 };

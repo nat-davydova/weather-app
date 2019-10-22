@@ -76,6 +76,8 @@ const weatherController = async () => {
 
 	await state.weather.getWeather(state.location.lat, state.location.long);
 
+	//render weather object
+	weatherView.renderWeather(state.weather);
 };
 
 //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)

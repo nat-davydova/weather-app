@@ -2578,6 +2578,9 @@ var DOM = {
   location: {
     content: document.querySelector('.location__content'),
     preloader: document.querySelector('.location__preloader')
+  },
+  weather: {
+    wind: document.querySelector('.weather__details-value[data-detail-type="wind"]')
   }
 };
 exports.DOM = DOM;
@@ -2895,7 +2898,27 @@ exports.renderLocation = renderLocation;
 },{"./../configs/path":36}],43:[function(require,module,exports){
 "use strict";
 
-},{}],44:[function(require,module,exports){
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderWeather = void 0;
+
+var _path = require("./../configs/path");
+
+//import DOM from configs
+//render weather item into the DOM - helper function
+var renderWeatherItem = function renderWeatherItem(item, uiElem) {
+  uiElem.textContent = item;
+};
+
+var renderWeather = function renderWeather(weatherObj) {
+  //render wind
+  renderWeatherItem("".concat(weatherObj.wind, " m/s"), _path.DOM.weather.wind);
+};
+
+exports.renderWeather = renderWeather;
+
+},{"./../configs/path":36}],44:[function(require,module,exports){
 "use strict";
 
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
@@ -3005,6 +3028,10 @@ function () {
             return state.weather.getWeather(state.location.lat, state.location["long"]);
 
           case 3:
+            //render weather object
+            weatherView.renderWeather(state.weather);
+
+          case 4:
           case "end":
             return _context2.stop();
         }
