@@ -15,7 +15,6 @@ export default class Weather {
 			const weatherCast = await axios(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=${weatherApi}&units=metric`);
 
 			//grabbing main weather data
-			this.typeWeather = weatherCast.data.weather[0].main;
 			this.idWeather = weatherCast.data.weather[0].id;
 
 			//grabbing additional weather data
@@ -58,6 +57,49 @@ export default class Weather {
 		}
 
 		this.temperature = newTemperature;
+
+	};
+
+	//handling weather title from id
+	weatherTitle = () => {
+
+		if (this.idWeather >= 200 && this.idWeather <= 232) {
+
+			this.weatherTitle = 'Thunderstorm'
+
+		} else if ((this.idWeather >= 300 && this.idWeather <= 321) || this.idWeather === 500 || this.idWeather === 501) {
+
+			this.weatherTitle = 'Rain'
+
+		} else if (this.idWeather >= 502 && this.idWeather <= 531) {
+
+			this.weatherTitle = 'Shower Rain'
+
+		} else if (this.idWeather >= 600 && this.idWeather <= 622) {
+
+			this.weatherTitle = 'Snow'
+
+		} else if (this.idWeather >= 701 && this.idWeather <= 781) {
+
+			this.weatherTitle = 'Fog'
+
+		} else if(this.idWeather === 800) {
+
+			this.weatherTitle = 'Clear Clouds'
+
+		} else if(this.idWeather === 801) {
+
+			this.weatherTitle = 'Few Clouds'
+
+		} else if(this.idWeather === 802) {
+
+			this.weatherTitle = 'Scattered Clouds'
+
+		} else if(this.idWeather === 803 || this.idWeather === 804) {
+
+			this.weatherTitle = 'Broken Clouds'
+
+		}
 
 	};
 

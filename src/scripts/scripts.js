@@ -76,6 +76,9 @@ const weatherController = async () => {
 
 	await state.weather.getWeather(state.location.lat, state.location.long);
 
+	//create weather title
+	state.weather.weatherTitle();
+
 	//render weather object into UI (except temperature)
 	weatherView.renderWeather(state.weather);
 

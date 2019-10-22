@@ -2643,6 +2643,7 @@ var DOM = {
     sunrise: document.querySelector('.weather__details-value[data-detail-type="sunr"]'),
     sunset: document.querySelector('.weather__details-value[data-detail-type="suns"]'),
     temperature: document.querySelector('.weather__details-value[data-detail-type="temp"]'),
+    title: document.querySelector('.weather__title'),
     wind: document.querySelector('.weather__details-value[data-detail-type="wind"]')
   }
 };
@@ -2848,7 +2849,6 @@ var Weather = function Weather(degreesType) {
             case 3:
               weatherCast = _context.sent;
               //grabbing main weather data
-              _this.typeWeather = weatherCast.data.weather[0].main;
               _this.idWeather = weatherCast.data.weather[0].id; //grabbing additional weather data
 
               _this.humidity = weatherCast.data.main.humidity; //in %
@@ -2864,21 +2864,21 @@ var Weather = function Weather(degreesType) {
               _this.sunset = weatherCast.data.sys.sunset; //UTC
 
               console.log(weatherCast);
-              _context.next = 19;
+              _context.next = 18;
               break;
 
-            case 15:
-              _context.prev = 15;
+            case 14:
+              _context.prev = 14;
               _context.t0 = _context["catch"](0);
               _this.weatherError = "Sorry! We can't define your weather :(";
               console.log(_context.t0);
 
-            case 19:
+            case 18:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 15]]);
+      }, _callee, null, [[0, 14]]);
     }));
 
     return function (_x, _x2) {
@@ -2897,6 +2897,27 @@ var Weather = function Weather(degreesType) {
     }
 
     _this.temperature = newTemperature;
+  });
+  (0, _defineProperty2["default"])(this, "weatherTitle", function () {
+    if (_this.idWeather >= 200 && _this.idWeather <= 232) {
+      _this.weatherTitle = 'Thunderstorm';
+    } else if (_this.idWeather >= 300 && _this.idWeather <= 321 || _this.idWeather === 500 || _this.idWeather === 501) {
+      _this.weatherTitle = 'Rain';
+    } else if (_this.idWeather >= 502 && _this.idWeather <= 531) {
+      _this.weatherTitle = 'Shower Rain';
+    } else if (_this.idWeather >= 600 && _this.idWeather <= 622) {
+      _this.weatherTitle = 'Snow';
+    } else if (_this.idWeather >= 701 && _this.idWeather <= 781) {
+      _this.weatherTitle = 'Fog';
+    } else if (_this.idWeather === 800) {
+      _this.weatherTitle = 'Clear Clouds';
+    } else if (_this.idWeather === 801) {
+      _this.weatherTitle = 'Few Clouds';
+    } else if (_this.idWeather === 802) {
+      _this.weatherTitle = 'Scattered Clouds';
+    } else if (_this.idWeather === 803 || _this.idWeather === 804) {
+      _this.weatherTitle = 'Broken Clouds';
+    }
   });
   this.degreesType = degreesType;
 };
@@ -3020,7 +3041,9 @@ var renderWeather = function renderWeather(weatherObj) {
       sunsHours = _unixToDate4[0],
       sunsMins = _unixToDate4[1];
 
-  renderWeatherItem("".concat(sunsHours, ":").concat(sunsMins), _path.DOM.weather.sunset);
+  renderWeatherItem("".concat(sunsHours, ":").concat(sunsMins), _path.DOM.weather.sunset); //render weather title
+
+  renderWeatherItem(weatherObj.weatherTitle, _path.DOM.weather.title);
 }; //render temperature
 
 
@@ -3148,12 +3171,14 @@ function () {
             return state.weather.getWeather(state.location.lat, state.location["long"]);
 
           case 3:
-            //render weather object into UI (except temperature)
+            //create weather title
+            state.weather.weatherTitle(); //render weather object into UI (except temperature)
+
             weatherView.renderWeather(state.weather); //render temperature into UI
 
             weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
 
-          case 5:
+          case 6:
           case "end":
             return _context2.stop();
         }

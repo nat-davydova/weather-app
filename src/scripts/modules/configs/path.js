@@ -25,6 +25,7 @@ export const DOM = {
 		sunrise: document.querySelector('.weather__details-value[data-detail-type="sunr"]'),
 		sunset: document.querySelector('.weather__details-value[data-detail-type="suns"]'),
 		temperature: document.querySelector('.weather__details-value[data-detail-type="temp"]'),
+		title: document.querySelector('.weather__title'),
 		wind: document.querySelector('.weather__details-value[data-detail-type="wind"]'),
 	}
 };

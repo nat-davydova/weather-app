@@ -39,6 +39,9 @@ export const renderWeather = (weatherObj) => {
 
 	renderWeatherItem(`${sunsHours}:${sunsMins}`, DOM.weather.sunset);
 
+	//render weather title
+	renderWeatherItem(weatherObj.weatherTitle, DOM.weather.title);
+
 };
 
 //render temperature
