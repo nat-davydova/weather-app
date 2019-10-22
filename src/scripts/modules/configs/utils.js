@@ -14,7 +14,11 @@ export const clearUI = placeToClear => {
 };
 
 //show preloader
-
 export const showPreloader = preloader => {
 	preloader.classList.remove('js-hidden');
+};
+
+//hide preloader
+export const hidePreloader = preloader => {
+	preloader.classList.add('js-hidden');
 };

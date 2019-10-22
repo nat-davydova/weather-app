@@ -2586,7 +2586,7 @@ exports.DOM = DOM;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.showPreloader = exports.clearUI = exports.handleError = void 0;
+exports.hidePreloader = exports.showPreloader = exports.clearUI = exports.handleError = void 0;
 
 //rendering errors in the UI
 var handleError = function handleError(errorText, placeToRender) {
@@ -2606,9 +2606,16 @@ exports.clearUI = clearUI;
 
 var showPreloader = function showPreloader(preloader) {
   preloader.classList.remove('js-hidden');
-};
+}; //hide preloader
+
 
 exports.showPreloader = showPreloader;
+
+var hidePreloader = function hidePreloader(preloader) {
+  preloader.classList.add('js-hidden');
+};
+
+exports.hidePreloader = hidePreloader;
 
 },{}],38:[function(require,module,exports){
 "use strict";
@@ -2861,7 +2868,9 @@ function () {
             return state.location.geolocation();
 
           case 5:
-            //rendering UI (error text or location)
+            //hide loader
+            (0, _utils.hidePreloader)(_path.DOM.location.preloader); //rendering UI (error text or location)
+
             if (state.location.locationError) {
               //render error text
               (0, _utils.handleError)(state.location.locationError, _path.DOM.location.content);
@@ -2870,7 +2879,7 @@ function () {
               locationView.renderLocation(state.location);
             }
 
-          case 6:
+          case 7:
           case "end":
             return _context.stop();
         }
