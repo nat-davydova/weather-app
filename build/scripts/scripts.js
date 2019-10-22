@@ -936,14 +936,15 @@ var getCoords = function getCoords() {
 
 
 var Location = function Location() {
+  var _this = this;
+
   (0, _classCallCheck2["default"])(this, Location);
   (0, _defineProperty2["default"])(this, "geolocation",
   /*#__PURE__*/
   (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
   _regenerator["default"].mark(function _callee() {
-    var _ref2, coords;
-
+    var coordinatesObj, coordinates;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -953,22 +954,24 @@ var Location = function Location() {
             return getCoords();
 
           case 3:
-            _ref2 = _context.sent;
-            coords = _ref2.coords;
-            console.log(coords);
-            _context.next = 10;
+            coordinatesObj = _context.sent;
+            coordinates = coordinatesObj.coords;
+            _this.lat = coordinates.latitude;
+            _this["long"] = coordinates.longitude; //converting coords into location name
+
+            _context.next = 11;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](0);
 
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 9]]);
   })));
 };
 

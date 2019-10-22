@@ -20,9 +20,16 @@ export default class Location {
 
 		try {
 
-			const { coords } = await getCoords();
+			//geolocation coords
+			const coordinatesObj = await getCoords();
 
-			console.log(coords);
+			const coordinates = coordinatesObj.coords;
+
+			this.lat = coordinates.latitude;
+
+			this.long = coordinates.longitude;
+
+			//converting coords into location name
 
 		} catch(e) {
 
