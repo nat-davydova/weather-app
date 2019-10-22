@@ -74,10 +74,17 @@ const weatherController = async () => {
 	//setting new Weather class
 	state.weather = new Weather('C');
 
+	//prepare UI before rendering anything (showing preloader)
+	showPreloader(DOM.weather.preloader);
+
+	//grab weather info
 	await state.weather.getWeather(state.location.lat, state.location.long);
 
 	//create weather title
 	state.weather.weatherTitle();
+
+	//hide loader
+	hidePreloader(DOM.weather.preloader);
 
 	//rendering UI (error or weather info)
 	if(state.weather.weatherError) {

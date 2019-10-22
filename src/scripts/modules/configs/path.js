@@ -24,6 +24,7 @@ export const DOM = {
 		info: document.querySelector('.weather__info'),
 		measures: document.querySelector('.weather__details-measure'),
 		pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),
+		preloader: document.querySelector('.weather__preloader'),
 		sunrise: document.querySelector('.weather__details-value[data-detail-type="sunr"]'),
 		sunset: document.querySelector('.weather__details-value[data-detail-type="suns"]'),
 		temperature: document.querySelector('.weather__details-value[data-detail-type="temp"]'),

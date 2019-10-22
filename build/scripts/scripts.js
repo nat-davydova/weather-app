@@ -2642,6 +2642,7 @@ var DOM = {
     info: document.querySelector('.weather__info'),
     measures: document.querySelector('.weather__details-measure'),
     pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),
+    preloader: document.querySelector('.weather__preloader'),
     sunrise: document.querySelector('.weather__details-value[data-detail-type="sunr"]'),
     sunset: document.querySelector('.weather__details-value[data-detail-type="suns"]'),
     temperature: document.querySelector('.weather__details-value[data-detail-type="temp"]'),
@@ -3230,13 +3231,18 @@ function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             //setting new Weather class
-            state.weather = new _Weather["default"]('C');
-            _context2.next = 3;
+            state.weather = new _Weather["default"]('C'); //prepare UI before rendering anything (showing preloader)
+
+            (0, _utils.showPreloader)(_path.DOM.weather.preloader); //grab weather info
+
+            _context2.next = 4;
             return state.weather.getWeather(state.location.lat, state.location["long"]);
 
-          case 3:
+          case 4:
             //create weather title
-            state.weather.weatherTitle(); //rendering UI (error or weather info)
+            state.weather.weatherTitle(); //hide loader
+
+            (0, _utils.hidePreloader)(_path.DOM.weather.preloader); //rendering UI (error or weather info)
 
             if (state.weather.weatherError) {
               //render error text
@@ -3248,7 +3254,7 @@ function () {
               weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
             }
 
-          case 5:
+          case 7:
           case "end":
             return _context2.stop();
         }

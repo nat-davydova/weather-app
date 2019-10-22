@@ -2,7 +2,6 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min';
 
 //SETUP IMPORTS
-@import "partials/setup/helpers";
 @import "partials/setup/media-q";
 @import "partials/setup/mixins";
 
@@ -13,3 +12,6 @@
 @import "partials/blocks/preloader";
 @import "partials/blocks/time";
 @import "partials/blocks/weather";
+
+//HELPERS
+@import "partials/setup/helpers";
