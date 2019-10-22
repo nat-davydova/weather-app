@@ -2738,6 +2738,9 @@ exports["default"] = Location;
 },{"./../configs/apiKeys":35,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/defineProperty":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/regenerator":6,"axios":7}],40:[function(require,module,exports){
 "use strict";
 
+},{}],41:[function(require,module,exports){
+"use strict";
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -2785,7 +2788,7 @@ var renderDate = function renderDate(dateObj) {
 
 exports.renderDate = renderDate;
 
-},{"./../configs/path":36}],41:[function(require,module,exports){
+},{"./../configs/path":36}],42:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2803,7 +2806,9 @@ var renderLocation = function renderLocation(locationObj) {
 
 exports.renderLocation = renderLocation;
 
-},{"./../configs/path":36}],42:[function(require,module,exports){
+},{"./../configs/path":36}],43:[function(require,module,exports){
+arguments[4][40][0].apply(exports,arguments)
+},{"dup":40}],44:[function(require,module,exports){
 "use strict";
 
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
@@ -2818,9 +2823,13 @@ var _DateTime = _interopRequireDefault(require("./modules/models/DateTime"));
 
 var _Location = _interopRequireDefault(require("./modules/models/Location"));
 
+var _Weather = _interopRequireDefault(require("./modules/models/Weather"));
+
 var dateView = _interopRequireWildcard(require("./modules/views/dateTimeVew"));
 
 var locationView = _interopRequireWildcard(require("./modules/views/locationView"));
+
+var weatherView = _interopRequireWildcard(require("./modules/views/weatherView"));
 
 var _utils = require("./modules/configs/utils");
 
@@ -2893,12 +2902,28 @@ function () {
 }(); //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
 
 
-window.addEventListener('load', function () {
-  //date and time controller
-  dateController(); //location controller
+window.addEventListener('load',
+/*#__PURE__*/
+(0, _asyncToGenerator2["default"])(
+/*#__PURE__*/
+_regenerator["default"].mark(function _callee2() {
+  return _regenerator["default"].wrap(function _callee2$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          //date and time controller
+          dateController(); //location controller
 
-  locationController();
-});
+          _context2.next = 3;
+          return locationController();
+
+        case 3:
+        case "end":
+          return _context2.stop();
+      }
+    }
+  }, _callee2);
+})));
 console.log(state);
 
-},{"./modules/configs/path":36,"./modules/configs/utils":37,"./modules/models/DateTime":38,"./modules/models/Location":39,"./modules/views/dateTimeVew":40,"./modules/views/locationView":41,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/interopRequireWildcard":5,"@babel/runtime/regenerator":6}]},{},[42]);
+},{"./modules/configs/path":36,"./modules/configs/utils":37,"./modules/models/DateTime":38,"./modules/models/Location":39,"./modules/models/Weather":40,"./modules/views/dateTimeVew":41,"./modules/views/locationView":42,"./modules/views/weatherView":43,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/interopRequireWildcard":5,"@babel/runtime/regenerator":6}]},{},[44]);

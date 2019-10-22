@@ -3,10 +3,12 @@
 //import models
 import DateTime from "./modules/models/DateTime";
 import Location from "./modules/models/Location";
+import Weather from "./modules/models/Weather";
 
 //import views
 import * as dateView from './modules/views/dateTimeVew';
 import * as locationView from './modules/views/locationView';
+import * as weatherView from './modules/views/weatherView';
 
 //import utils
 import {handleError, clearUI, showPreloader, hidePreloader} from "./modules/configs/utils";
@@ -67,13 +69,13 @@ const locationController = async () => {
 };
 
 //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
 
 	//date and time controller
 	dateController();
 
 	//location controller
-	locationController();
+	await locationController();
 
 });
 
