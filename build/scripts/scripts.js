@@ -2639,6 +2639,7 @@ var DOM = {
     convertBtn: document.querySelector('.weather__temp-switcher'),
     humidity: document.querySelector('.weather__details-value[data-detail-type="humid"]'),
     icon: document.querySelector('.weather__icon'),
+    info: document.querySelector('.weather__info'),
     measures: document.querySelector('.weather__details-measure'),
     pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),
     sunrise: document.querySelector('.weather__details-value[data-detail-type="sunr"]'),
@@ -3235,13 +3236,19 @@ function () {
 
           case 3:
             //create weather title
-            state.weather.weatherTitle(); //render weather object into UI (except temperature)
+            state.weather.weatherTitle(); //rendering UI (error or weather info)
 
-            weatherView.renderWeather(state.weather, state.date); //render temperature into UI
+            if (state.weather.weatherError) {
+              //render error text
+              (0, _utils.handleError)(state.weather.weatherError, _path.DOM.weather.info);
+            } else {
+              //render weather object into UI (except temperature)
+              weatherView.renderWeather(state.weather, state.date); //render temperature into UI
 
-            weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
+              weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
+            }
 
-          case 6:
+          case 5:
           case "end":
             return _context2.stop();
         }

@@ -79,11 +79,22 @@ const weatherController = async () => {
 	//create weather title
 	state.weather.weatherTitle();
 
-	//render weather object into UI (except temperature)
-	weatherView.renderWeather(state.weather, state.date);
+	//rendering UI (error or weather info)
+	if(state.weather.weatherError) {
 
-	//render temperature into UI
-	weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
+		//render error text
+		handleError(state.weather.weatherError, DOM.weather.info);
+
+	} else {
+
+		//render weather object into UI (except temperature)
+		weatherView.renderWeather(state.weather, state.date);
+
+		//render temperature into UI
+		weatherView.renderTemperature(state.weather.temperature, state.weather.degreesType);
+
+	}
+
 };
 
 //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
