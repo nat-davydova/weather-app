@@ -29,13 +29,13 @@ export const renderDate = (dateObj) => {
 	renderDateItem(dateObj.year, DOM.date.year);
 
 	//render month
-	renderDateItem(dateObj.month, DOM.date.month);
+	renderDateItem(`${dateObj.month},`, DOM.date.month);
 
 	//render date
 	renderDateItem(dateObj.date, DOM.date.date);
 
 	//render hours
-	renderDateItem(dateObj.hours, DOM.time.hours);
+	renderDateItem(`${dateObj.hours}:`, DOM.time.hours);
 
 	//render min
 	renderDateItem(dateObj.mins, DOM.time.mins);

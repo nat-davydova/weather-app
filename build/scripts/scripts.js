@@ -2974,11 +2974,11 @@ var renderDate = function renderDate(dateObj) {
 
   renderDateItem(dateObj.year, _path.DOM.date.year); //render month
 
-  renderDateItem(dateObj.month, _path.DOM.date.month); //render date
+  renderDateItem("".concat(dateObj.month, ","), _path.DOM.date.month); //render date
 
   renderDateItem(dateObj.date, _path.DOM.date.date); //render hours
 
-  renderDateItem(dateObj.hours, _path.DOM.time.hours); //render min
+  renderDateItem("".concat(dateObj.hours, ":"), _path.DOM.time.hours); //render min
 
   renderDateItem(dateObj.mins, _path.DOM.time.mins);
 };

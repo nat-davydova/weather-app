@@ -7,12 +7,6 @@ $date-item-offset: 5px;
 	margin-right: $date-item-offset;
 }
 
-.date__month {
-
-	//',' symbol
-	&:after {
-		margin-right: $date-item-offset;
-
-		content: ',';
-	}
+.date__year {
+	margin-left: $date-item-offset;
 }
