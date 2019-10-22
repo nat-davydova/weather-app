@@ -68,6 +68,16 @@ const locationController = async () => {
 	}
 };
 
+//*** WEATHER CONTROLLER
+const weatherController = async () => {
+
+	//setting new Weather class
+	state.weather = new Weather();
+
+	await state.weather.getWeather(state.location.lat, state.location.long);
+
+};
+
 //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
 window.addEventListener('load', async () => {
 
@@ -76,6 +86,9 @@ window.addEventListener('load', async () => {
 
 	//location controller
 	await locationController();
+
+	//weather controller
+	await weatherController();
 
 });
 

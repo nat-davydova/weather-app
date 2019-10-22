@@ -2551,9 +2551,11 @@ try {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.mapApi = void 0;
+exports.weatherApi = exports.mapApi = void 0;
 var mapApi = "5ec785d2097b2d";
 exports.mapApi = mapApi;
+var weatherApi = "9d7e9b0f0c931c7d7afb727bb3b83dbc";
+exports.weatherApi = weatherApi;
 
 },{}],36:[function(require,module,exports){
 "use strict";
@@ -2738,7 +2740,64 @@ exports["default"] = Location;
 },{"./../configs/apiKeys":35,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/defineProperty":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/regenerator":6,"axios":7}],40:[function(require,module,exports){
 "use strict";
 
-},{}],41:[function(require,module,exports){
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _axios = _interopRequireDefault(require("axios"));
+
+var _apiKeys = require("./../configs/apiKeys");
+
+//*** WEATHER PART
+var Weather = function Weather() {
+  (0, _classCallCheck2["default"])(this, Weather);
+  (0, _defineProperty2["default"])(this, "getWeather",
+  /*#__PURE__*/
+  function () {
+    var _ref = (0, _asyncToGenerator2["default"])(
+    /*#__PURE__*/
+    _regenerator["default"].mark(function _callee(lat, _long) {
+      var weather;
+      return _regenerator["default"].wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return (0, _axios["default"])("https://api.openweathermap.org/data/2.5/weather?lat=".concat(lat, "&lon=").concat(_long, "&APPID=").concat(_apiKeys.weatherApi));
+
+            case 2:
+              weather = _context.sent;
+              console.log(weather);
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x, _x2) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+};
+
+exports["default"] = Weather;
+;
+
+},{"./../configs/apiKeys":35,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/defineProperty":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/regenerator":6,"axios":7}],41:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2807,8 +2866,9 @@ var renderLocation = function renderLocation(locationObj) {
 exports.renderLocation = renderLocation;
 
 },{"./../configs/path":36}],43:[function(require,module,exports){
-arguments[4][40][0].apply(exports,arguments)
-},{"dup":40}],44:[function(require,module,exports){
+"use strict";
+
+},{}],44:[function(require,module,exports){
 "use strict";
 
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
@@ -2899,6 +2959,35 @@ function () {
   return function locationController() {
     return _ref.apply(this, arguments);
   };
+}(); //*** WEATHER CONTROLLER
+
+
+var weatherController =
+/*#__PURE__*/
+function () {
+  var _ref2 = (0, _asyncToGenerator2["default"])(
+  /*#__PURE__*/
+  _regenerator["default"].mark(function _callee2() {
+    return _regenerator["default"].wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            //setting new Weather class
+            state.weather = new _Weather["default"]();
+            _context2.next = 3;
+            return state.weather.getWeather(state.location.lat, state.location["long"]);
+
+          case 3:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function weatherController() {
+    return _ref2.apply(this, arguments);
+  };
 }(); //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
 
 
@@ -2906,23 +2995,27 @@ window.addEventListener('load',
 /*#__PURE__*/
 (0, _asyncToGenerator2["default"])(
 /*#__PURE__*/
-_regenerator["default"].mark(function _callee2() {
-  return _regenerator["default"].wrap(function _callee2$(_context2) {
+_regenerator["default"].mark(function _callee3() {
+  return _regenerator["default"].wrap(function _callee3$(_context3) {
     while (1) {
-      switch (_context2.prev = _context2.next) {
+      switch (_context3.prev = _context3.next) {
         case 0:
           //date and time controller
           dateController(); //location controller
 
-          _context2.next = 3;
+          _context3.next = 3;
           return locationController();
 
         case 3:
+          _context3.next = 5;
+          return weatherController();
+
+        case 5:
         case "end":
-          return _context2.stop();
+          return _context3.stop();
       }
     }
-  }, _callee2);
+  }, _callee3);
 })));
 console.log(state);
 
