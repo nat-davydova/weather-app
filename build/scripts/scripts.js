@@ -2572,6 +2572,9 @@ var DOM = {
   time: {
     hours: document.querySelector('.time__hour'),
     mins: document.querySelector('.time__minutes')
+  },
+  location: {
+    content: document.querySelector('.location__content')
   }
 };
 exports.DOM = DOM;
@@ -2747,12 +2750,31 @@ exports.renderDate = renderDate;
 },{"./../configs/path":36}],40:[function(require,module,exports){
 "use strict";
 
-},{}],41:[function(require,module,exports){
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderLocation = void 0;
+
+var _path = require("./../configs/path");
+
+//import DOM from configs
+//render location info into location part of UI
+var renderLocation = function renderLocation(locationObj) {
+  _path.DOM.location.content.textContent = "".concat(locationObj.city, ", ").concat(locationObj.district);
+};
+
+exports.renderLocation = renderLocation;
+
+},{"./../configs/path":36}],41:[function(require,module,exports){
 "use strict";
 
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
 var _DateTime = _interopRequireDefault(require("./modules/models/DateTime"));
 
@@ -2785,12 +2807,38 @@ var dateController = function dateController() {
 }; //*** LOCATION CONTROLLER
 
 
-var locationController = function locationController() {
-  //setting new location
-  state.location = new _Location["default"](); //grabbing location from model
+var locationController =
+/*#__PURE__*/
+function () {
+  var _ref = (0, _asyncToGenerator2["default"])(
+  /*#__PURE__*/
+  _regenerator["default"].mark(function _callee() {
+    return _regenerator["default"].wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            //setting new location
+            state.location = new _Location["default"](); //grabbing location from model
 
-  state.location.geolocation();
-}; //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
+            _context.next = 3;
+            return state.location.geolocation();
+
+          case 3:
+            //render location into UI
+            locationView.renderLocation(state.location);
+
+          case 4:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function locationController() {
+    return _ref.apply(this, arguments);
+  };
+}(); //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)
 
 
 window.addEventListener('load', function () {
@@ -2801,4 +2849,4 @@ window.addEventListener('load', function () {
 });
 console.log(state);
 
-},{"./modules/configs/path":36,"./modules/models/DateTime":37,"./modules/models/Location":38,"./modules/views/dateTimeVew":39,"./modules/views/locationView":40,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/interopRequireWildcard":5}]},{},[41]);
+},{"./modules/configs/path":36,"./modules/models/DateTime":37,"./modules/models/Location":38,"./modules/views/dateTimeVew":39,"./modules/views/locationView":40,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/interopRequireWildcard":5,"@babel/runtime/regenerator":6}]},{},[41]);

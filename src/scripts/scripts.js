@@ -34,13 +34,16 @@ const dateController = () => {
 };
 
 //*** LOCATION CONTROLLER
-const locationController = () => {
+const locationController = async () => {
 
 	//setting new location
 	state.location = new Location();
 
 	//grabbing location from model
-	state.location.geolocation();
+	await state.location.geolocation();
+
+	//render location into UI
+	locationView.renderLocation(state.location);
 };
 
 //*** ONLOAD EVENT HANDLER (DATE/TIME/LOCATION)

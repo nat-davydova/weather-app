@@ -10,6 +10,9 @@ export const DOM = {
 	time: {
 		hours: document.querySelector('.time__hour'),
 		mins: document.querySelector('.time__minutes'),
-	}
+	},
 
+	location: {
+		content: document.querySelector('.location__content')
+	}
 };
