@@ -2761,6 +2761,8 @@ var _apiKeys = require("./../configs/apiKeys");
 
 //*** WEATHER PART
 var Weather = function Weather() {
+  var _this = this;
+
   (0, _classCallCheck2["default"])(this, Weather);
   (0, _defineProperty2["default"])(this, "getWeather",
   /*#__PURE__*/
@@ -2768,24 +2770,46 @@ var Weather = function Weather() {
     var _ref = (0, _asyncToGenerator2["default"])(
     /*#__PURE__*/
     _regenerator["default"].mark(function _callee(lat, _long) {
-      var weather;
+      var weatherCast;
       return _regenerator["default"].wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              _context.prev = 0;
+              _context.next = 3;
               return (0, _axios["default"])("https://api.openweathermap.org/data/2.5/weather?lat=".concat(lat, "&lon=").concat(_long, "&APPID=").concat(_apiKeys.weatherApi));
 
-            case 2:
-              weather = _context.sent;
-              console.log(weather);
+            case 3:
+              weatherCast = _context.sent;
+              //grabbing weather data
+              _this.humidity = weatherCast.data.main.humidity; //in %
 
-            case 4:
+              _this.wind = weatherCast.data.wind.speed; //in m/s
+
+              _this.pressure = weatherCast.data.main.pressure; //in hPA
+
+              _this.temperature = weatherCast.data.main.temp; //in Kelvins
+
+              _this.sunrise = weatherCast.data.sys.sunrise; //UTC
+
+              _this.sunset = weatherCast.data.sys.sunset; //UTC
+
+              console.log(weatherCast);
+              _context.next = 17;
+              break;
+
+            case 13:
+              _context.prev = 13;
+              _context.t0 = _context["catch"](0);
+              _this.weatherError = "Sorry! We can't define your weather :(";
+              console.log(_context.t0);
+
+            case 17:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, null, [[0, 13]]);
     }));
 
     return function (_x, _x2) {
