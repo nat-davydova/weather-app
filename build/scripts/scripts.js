@@ -2777,39 +2777,42 @@ var Weather = function Weather() {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return (0, _axios["default"])("https://api.openweathermap.org/data/2.5/weather?lat=".concat(lat, "&lon=").concat(_long, "&APPID=").concat(_apiKeys.weatherApi));
+              return (0, _axios["default"])("https://api.openweathermap.org/data/2.5/weather?lat=".concat(lat, "&lon=").concat(_long, "&APPID=").concat(_apiKeys.weatherApi, "&units=metric"));
 
             case 3:
               weatherCast = _context.sent;
-              //grabbing weather data
+              //grabbing main weather data
+              _this.typeWeather = weatherCast.data.weather[0].main;
+              _this.idWeather = weatherCast.data.weather[0].id; //grabbing additional weather data
+
               _this.humidity = weatherCast.data.main.humidity; //in %
 
               _this.wind = weatherCast.data.wind.speed; //in m/s
 
               _this.pressure = weatherCast.data.main.pressure; //in hPA
 
-              _this.temperature = weatherCast.data.main.temp; //in Kelvins
+              _this.temperature = weatherCast.data.main.temp; //in Celcius
 
               _this.sunrise = weatherCast.data.sys.sunrise; //UTC
 
               _this.sunset = weatherCast.data.sys.sunset; //UTC
 
               console.log(weatherCast);
-              _context.next = 17;
+              _context.next = 19;
               break;
 
-            case 13:
-              _context.prev = 13;
+            case 15:
+              _context.prev = 15;
               _context.t0 = _context["catch"](0);
               _this.weatherError = "Sorry! We can't define your weather :(";
               console.log(_context.t0);
 
-            case 17:
+            case 19:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 13]]);
+      }, _callee, null, [[0, 15]]);
     }));
 
     return function (_x, _x2) {
