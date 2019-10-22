@@ -2580,6 +2580,7 @@ var DOM = {
     preloader: document.querySelector('.location__preloader')
   },
   weather: {
+    humidity: document.querySelector('.weather__details-value[data-detail-type="humid"]'),
     wind: document.querySelector('.weather__details-value[data-detail-type="wind"]')
   }
 };
@@ -2913,7 +2914,9 @@ var renderWeatherItem = function renderWeatherItem(item, uiElem) {
 
 var renderWeather = function renderWeather(weatherObj) {
   //render wind
-  renderWeatherItem("".concat(weatherObj.wind, " m/s"), _path.DOM.weather.wind);
+  renderWeatherItem("".concat(weatherObj.wind, " m/s"), _path.DOM.weather.wind); //render humidity
+
+  renderWeatherItem("".concat(weatherObj.humidity, " %"), _path.DOM.weather.humidity);
 };
 
 exports.renderWeather = renderWeather;

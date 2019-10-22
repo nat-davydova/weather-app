@@ -9,6 +9,9 @@ const renderWeatherItem = (item, uiElem) => {
 export const renderWeather = (weatherObj) => {
 
 	//render wind
-	renderWeatherItem(`${weatherObj.wind} m/s`, DOM.weather.wind)
+	renderWeatherItem(`${weatherObj.wind} m/s`, DOM.weather.wind);
+
+	//render humidity
+	renderWeatherItem(`${weatherObj.humidity} %`, DOM.weather.humidity);
 
 };
