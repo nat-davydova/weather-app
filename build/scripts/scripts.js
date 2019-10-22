@@ -1,4 +1,10 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+module.exports = _arrayWithHoles;
+},{}],2:[function(require,module,exports){
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
   try {
     var info = gen[key](arg);
@@ -36,7 +42,7 @@ function _asyncToGenerator(fn) {
 }
 
 module.exports = _asyncToGenerator;
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -44,7 +50,7 @@ function _classCallCheck(instance, Constructor) {
 }
 
 module.exports = _classCallCheck;
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -61,7 +67,7 @@ function _defineProperty(obj, key, value) {
 }
 
 module.exports = _defineProperty;
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
     "default": obj
@@ -69,7 +75,7 @@ function _interopRequireDefault(obj) {
 }
 
 module.exports = _interopRequireDefault;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 function _getRequireWildcardCache() {
   if (typeof WeakMap !== "function") return null;
   var cache = new WeakMap();
@@ -120,12 +126,62 @@ function _interopRequireWildcard(obj) {
 }
 
 module.exports = _interopRequireWildcard;
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
+function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+module.exports = _iterableToArrayLimit;
+},{}],8:[function(require,module,exports){
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+module.exports = _nonIterableRest;
+},{}],9:[function(require,module,exports){
+var arrayWithHoles = require("./arrayWithHoles");
+
+var iterableToArrayLimit = require("./iterableToArrayLimit");
+
+var nonIterableRest = require("./nonIterableRest");
+
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+}
+
+module.exports = _slicedToArray;
+},{"./arrayWithHoles":1,"./iterableToArrayLimit":7,"./nonIterableRest":8}],10:[function(require,module,exports){
 module.exports = require("regenerator-runtime");
 
-},{"regenerator-runtime":34}],7:[function(require,module,exports){
+},{"regenerator-runtime":38}],11:[function(require,module,exports){
 module.exports = require('./lib/axios');
-},{"./lib/axios":9}],8:[function(require,module,exports){
+},{"./lib/axios":13}],12:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -301,7 +357,7 @@ module.exports = function xhrAdapter(config) {
   });
 };
 
-},{"../core/createError":15,"./../core/settle":19,"./../helpers/buildURL":23,"./../helpers/cookies":25,"./../helpers/isURLSameOrigin":27,"./../helpers/parseHeaders":29,"./../utils":31}],9:[function(require,module,exports){
+},{"../core/createError":19,"./../core/settle":23,"./../helpers/buildURL":27,"./../helpers/cookies":29,"./../helpers/isURLSameOrigin":31,"./../helpers/parseHeaders":33,"./../utils":35}],13:[function(require,module,exports){
 'use strict';
 
 var utils = require('./utils');
@@ -356,7 +412,7 @@ module.exports = axios;
 // Allow use of default import syntax in TypeScript
 module.exports.default = axios;
 
-},{"./cancel/Cancel":10,"./cancel/CancelToken":11,"./cancel/isCancel":12,"./core/Axios":13,"./core/mergeConfig":18,"./defaults":21,"./helpers/bind":22,"./helpers/spread":30,"./utils":31}],10:[function(require,module,exports){
+},{"./cancel/Cancel":14,"./cancel/CancelToken":15,"./cancel/isCancel":16,"./core/Axios":17,"./core/mergeConfig":22,"./defaults":25,"./helpers/bind":26,"./helpers/spread":34,"./utils":35}],14:[function(require,module,exports){
 'use strict';
 
 /**
@@ -377,7 +433,7 @@ Cancel.prototype.__CANCEL__ = true;
 
 module.exports = Cancel;
 
-},{}],11:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 var Cancel = require('./Cancel');
@@ -436,14 +492,14 @@ CancelToken.source = function source() {
 
 module.exports = CancelToken;
 
-},{"./Cancel":10}],12:[function(require,module,exports){
+},{"./Cancel":14}],16:[function(require,module,exports){
 'use strict';
 
 module.exports = function isCancel(value) {
   return !!(value && value.__CANCEL__);
 };
 
-},{}],13:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -531,7 +587,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = Axios;
 
-},{"../helpers/buildURL":23,"./../utils":31,"./InterceptorManager":14,"./dispatchRequest":16,"./mergeConfig":18}],14:[function(require,module,exports){
+},{"../helpers/buildURL":27,"./../utils":35,"./InterceptorManager":18,"./dispatchRequest":20,"./mergeConfig":22}],18:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -585,7 +641,7 @@ InterceptorManager.prototype.forEach = function forEach(fn) {
 
 module.exports = InterceptorManager;
 
-},{"./../utils":31}],15:[function(require,module,exports){
+},{"./../utils":35}],19:[function(require,module,exports){
 'use strict';
 
 var enhanceError = require('./enhanceError');
@@ -605,7 +661,7 @@ module.exports = function createError(message, config, code, request, response) 
   return enhanceError(error, config, code, request, response);
 };
 
-},{"./enhanceError":17}],16:[function(require,module,exports){
+},{"./enhanceError":21}],20:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -693,7 +749,7 @@ module.exports = function dispatchRequest(config) {
   });
 };
 
-},{"../cancel/isCancel":12,"../defaults":21,"./../helpers/combineURLs":24,"./../helpers/isAbsoluteURL":26,"./../utils":31,"./transformData":20}],17:[function(require,module,exports){
+},{"../cancel/isCancel":16,"../defaults":25,"./../helpers/combineURLs":28,"./../helpers/isAbsoluteURL":30,"./../utils":35,"./transformData":24}],21:[function(require,module,exports){
 'use strict';
 
 /**
@@ -737,7 +793,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
   return error;
 };
 
-},{}],18:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -790,7 +846,7 @@ module.exports = function mergeConfig(config1, config2) {
   return config;
 };
 
-},{"../utils":31}],19:[function(require,module,exports){
+},{"../utils":35}],23:[function(require,module,exports){
 'use strict';
 
 var createError = require('./createError');
@@ -817,7 +873,7 @@ module.exports = function settle(resolve, reject, response) {
   }
 };
 
-},{"./createError":15}],20:[function(require,module,exports){
+},{"./createError":19}],24:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -839,7 +895,7 @@ module.exports = function transformData(data, headers, fns) {
   return data;
 };
 
-},{"./../utils":31}],21:[function(require,module,exports){
+},{"./../utils":35}],25:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -941,7 +997,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 }).call(this,require('_process'))
-},{"./adapters/http":8,"./adapters/xhr":8,"./helpers/normalizeHeaderName":28,"./utils":31,"_process":33}],22:[function(require,module,exports){
+},{"./adapters/http":12,"./adapters/xhr":12,"./helpers/normalizeHeaderName":32,"./utils":35,"_process":37}],26:[function(require,module,exports){
 'use strict';
 
 module.exports = function bind(fn, thisArg) {
@@ -954,7 +1010,7 @@ module.exports = function bind(fn, thisArg) {
   };
 };
 
-},{}],23:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -1027,7 +1083,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
   return url;
 };
 
-},{"./../utils":31}],24:[function(require,module,exports){
+},{"./../utils":35}],28:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1043,7 +1099,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
     : baseURL;
 };
 
-},{}],25:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -1098,7 +1154,7 @@ module.exports = (
     })()
 );
 
-},{"./../utils":31}],26:[function(require,module,exports){
+},{"./../utils":35}],30:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1114,7 +1170,7 @@ module.exports = function isAbsoluteURL(url) {
   return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
 };
 
-},{}],27:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -1184,7 +1240,7 @@ module.exports = (
     })()
 );
 
-},{"./../utils":31}],28:[function(require,module,exports){
+},{"./../utils":35}],32:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -1198,7 +1254,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
   });
 };
 
-},{"../utils":31}],29:[function(require,module,exports){
+},{"../utils":35}],33:[function(require,module,exports){
 'use strict';
 
 var utils = require('./../utils');
@@ -1253,7 +1309,7 @@ module.exports = function parseHeaders(headers) {
   return parsed;
 };
 
-},{"./../utils":31}],30:[function(require,module,exports){
+},{"./../utils":35}],34:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1282,7 +1338,7 @@ module.exports = function spread(callback) {
   };
 };
 
-},{}],31:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 var bind = require('./helpers/bind');
@@ -1618,7 +1674,7 @@ module.exports = {
   trim: trim
 };
 
-},{"./helpers/bind":22,"is-buffer":32}],32:[function(require,module,exports){
+},{"./helpers/bind":26,"is-buffer":36}],36:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -1631,7 +1687,7 @@ module.exports = function isBuffer (obj) {
     typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
 }
 
-},{}],33:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -1817,7 +1873,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],34:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -2545,7 +2601,7 @@ try {
   Function("r", "regeneratorRuntime = r")(runtime);
 }
 
-},{}],35:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2557,7 +2613,7 @@ exports.mapApi = mapApi;
 var weatherApi = "9d7e9b0f0c931c7d7afb727bb3b83dbc";
 exports.weatherApi = weatherApi;
 
-},{}],36:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2582,12 +2638,13 @@ var DOM = {
   weather: {
     humidity: document.querySelector('.weather__details-value[data-detail-type="humid"]'),
     pressure: document.querySelector('.weather__details-value[data-detail-type="pres"]'),
+    sunrise: document.querySelector('.weather__details-value[data-detail-type="sunr"]'),
     wind: document.querySelector('.weather__details-value[data-detail-type="wind"]')
   }
 };
 exports.DOM = DOM;
 
-},{}],37:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2624,7 +2681,7 @@ var hidePreloader = function hidePreloader(preloader) {
 
 exports.hidePreloader = hidePreloader;
 
-},{}],38:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -2660,7 +2717,7 @@ var DateTime = function DateTime() {
 exports["default"] = DateTime;
 ;
 
-},{"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/defineProperty":3,"@babel/runtime/helpers/interopRequireDefault":4}],39:[function(require,module,exports){
+},{"@babel/runtime/helpers/classCallCheck":3,"@babel/runtime/helpers/defineProperty":4,"@babel/runtime/helpers/interopRequireDefault":5}],43:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -2742,7 +2799,7 @@ var Location = function Location() {
 exports["default"] = Location;
 ;
 
-},{"./../configs/apiKeys":35,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/defineProperty":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/regenerator":6,"axios":7}],40:[function(require,module,exports){
+},{"./../configs/apiKeys":39,"@babel/runtime/helpers/asyncToGenerator":2,"@babel/runtime/helpers/classCallCheck":3,"@babel/runtime/helpers/defineProperty":4,"@babel/runtime/helpers/interopRequireDefault":5,"@babel/runtime/regenerator":10,"axios":11}],44:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -2829,7 +2886,7 @@ var Weather = function Weather() {
 exports["default"] = Weather;
 ;
 
-},{"./../configs/apiKeys":35,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/classCallCheck":2,"@babel/runtime/helpers/defineProperty":3,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/regenerator":6,"axios":7}],41:[function(require,module,exports){
+},{"./../configs/apiKeys":39,"@babel/runtime/helpers/asyncToGenerator":2,"@babel/runtime/helpers/classCallCheck":3,"@babel/runtime/helpers/defineProperty":4,"@babel/runtime/helpers/interopRequireDefault":5,"@babel/runtime/regenerator":10,"axios":11}],45:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2879,7 +2936,7 @@ var renderDate = function renderDate(dateObj) {
 
 exports.renderDate = renderDate;
 
-},{"./../configs/path":36}],42:[function(require,module,exports){
+},{"./../configs/path":40}],46:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2897,13 +2954,17 @@ var renderLocation = function renderLocation(locationObj) {
 
 exports.renderLocation = renderLocation;
 
-},{"./../configs/path":36}],43:[function(require,module,exports){
+},{"./../configs/path":40}],47:[function(require,module,exports){
 "use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.renderWeather = void 0;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
 var _path = require("./../configs/path");
 
@@ -2911,6 +2972,14 @@ var _path = require("./../configs/path");
 //render weather item into the DOM - helper function
 var renderWeatherItem = function renderWeatherItem(item, uiElem) {
   uiElem.textContent = item;
+}; //convert unix time to readable Time
+
+
+var unixToDate = function unixToDate(unix) {
+  var date = new Date(unix * 1000);
+  var hours = date.getHours();
+  var mins = date.getMinutes();
+  return [hours, mins];
 };
 
 var renderWeather = function renderWeather(weatherObj) {
@@ -2919,12 +2988,19 @@ var renderWeather = function renderWeather(weatherObj) {
 
   renderWeatherItem("".concat(weatherObj.humidity, " %"), _path.DOM.weather.humidity); //render pressure
 
-  renderWeatherItem("".concat(weatherObj.pressure, " hPA"), _path.DOM.weather.pressure);
+  renderWeatherItem("".concat(weatherObj.pressure, " hPA"), _path.DOM.weather.pressure); //render sunrise
+
+  var _unixToDate = unixToDate(weatherObj.sunrise),
+      _unixToDate2 = (0, _slicedToArray2["default"])(_unixToDate, 2),
+      sunrHours = _unixToDate2[0],
+      sunrMins = _unixToDate2[1];
+
+  renderWeatherItem("".concat(sunrHours, ":").concat(sunrMins), _path.DOM.weather.sunrise);
 };
 
 exports.renderWeather = renderWeather;
 
-},{"./../configs/path":36}],44:[function(require,module,exports){
+},{"./../configs/path":40,"@babel/runtime/helpers/interopRequireDefault":5,"@babel/runtime/helpers/slicedToArray":9}],48:[function(require,module,exports){
 "use strict";
 
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
@@ -3079,4 +3155,4 @@ _regenerator["default"].mark(function _callee3() {
 })));
 console.log(state);
 
-},{"./modules/configs/path":36,"./modules/configs/utils":37,"./modules/models/DateTime":38,"./modules/models/Location":39,"./modules/models/Weather":40,"./modules/views/dateTimeVew":41,"./modules/views/locationView":42,"./modules/views/weatherView":43,"@babel/runtime/helpers/asyncToGenerator":1,"@babel/runtime/helpers/interopRequireDefault":4,"@babel/runtime/helpers/interopRequireWildcard":5,"@babel/runtime/regenerator":6}]},{},[44]);
+},{"./modules/configs/path":40,"./modules/configs/utils":41,"./modules/models/DateTime":42,"./modules/models/Location":43,"./modules/models/Weather":44,"./modules/views/dateTimeVew":45,"./modules/views/locationView":46,"./modules/views/weatherView":47,"@babel/runtime/helpers/asyncToGenerator":2,"@babel/runtime/helpers/interopRequireDefault":5,"@babel/runtime/helpers/interopRequireWildcard":6,"@babel/runtime/regenerator":10}]},{},[48]);

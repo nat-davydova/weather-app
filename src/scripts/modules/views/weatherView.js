@@ -6,6 +6,18 @@ const renderWeatherItem = (item, uiElem) => {
 	uiElem.textContent = item;
 };
 
+//convert unix time to readable Time
+const unixToDate = unix => {
+
+	const date = new Date(unix * 1000);
+
+	const hours = date.getHours();
+
+	const mins =  date.getMinutes();
+
+	return [hours, mins];
+};
+
 export const renderWeather = (weatherObj) => {
 
 	//render wind
@@ -16,4 +28,9 @@ export const renderWeather = (weatherObj) => {
 
 	//render pressure
 	renderWeatherItem(`${weatherObj.pressure} hPA`, DOM.weather.pressure);
+
+	//render sunrise
+	const [ sunrHours, sunrMins ] = unixToDate(weatherObj.sunrise);
+
+	renderWeatherItem(`${sunrHours}:${sunrMins}`, DOM.weather.sunrise);
 };
