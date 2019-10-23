@@ -3025,7 +3025,7 @@ var renderWeatherItem = function renderWeatherItem(item, uiElem) {
 }; //pick proper weather icon based on weather title and time
 
 
-var weatherIcon = function weatherIcon(weatherType, localHours, sunset) {
+var weatherIcon = function weatherIcon(weatherType, localHours, sunset, sunrise) {
   var icon;
 
   switch (weatherType) {
@@ -3050,7 +3050,7 @@ var weatherIcon = function weatherIcon(weatherType, localHours, sunset) {
       break;
 
     case 'Clear Sky':
-      if (localHours < sunset) {
+      if (localHours < sunset && localHours > sunrise) {
         icon = 'clear-sky';
       } else {
         icon = 'clear-sky-night';
@@ -3059,7 +3059,7 @@ var weatherIcon = function weatherIcon(weatherType, localHours, sunset) {
       break;
 
     case 'Few Clouds':
-      if (localHours < sunset) {
+      if (localHours < sunset && localHours > sunrise) {
         icon = 'few-clouds';
       } else {
         icon = 'few-clouds-night';
@@ -3106,7 +3106,7 @@ var renderWeather = function renderWeather(weatherObj, dateObj) {
 
   renderWeatherItem(weatherObj.weatherTitle, _path.DOM.weather.title); //render icon
 
-  var iconName = weatherIcon(weatherObj.weatherTitle, dateObj.hours, weatherObj.sunset[0]);
+  var iconName = weatherIcon(weatherObj.weatherTitle, dateObj.hours, weatherObj.sunset[0], weatherObj.sunrise[0]);
   var icon = "\n\t\t<svg>\n         \t<use xlink:href=\"./assets/sprites/sprites-colored/svg/sprite.symbol.svg#".concat(iconName, "\" >\n\t\t</svg>\n\t");
 
   _path.DOM.weather.icon.insertAdjacentHTML("beforeend", icon);

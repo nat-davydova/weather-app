@@ -7,7 +7,7 @@ const renderWeatherItem = (item, uiElem) => {
 };
 
 //pick proper weather icon based on weather title and time
-const weatherIcon = (weatherType, localHours, sunset) => {
+const weatherIcon = (weatherType, localHours, sunset, sunrise) => {
 
 	let icon;
 
@@ -34,7 +34,7 @@ const weatherIcon = (weatherType, localHours, sunset) => {
 			break;
 
 		case 'Clear Sky':
-			if (localHours < sunset) {
+			if (localHours < sunset && localHours > sunrise) {
 				icon = 'clear-sky'
 			} else {
 				icon = 'clear-sky-night'
@@ -42,7 +42,7 @@ const weatherIcon = (weatherType, localHours, sunset) => {
 			break;
 
 		case 'Few Clouds':
-			if (localHours < sunset) {
+			if (localHours < sunset && localHours > sunrise) {
 				icon = 'few-clouds'
 			} else {
 				icon = 'few-clouds-night'
@@ -92,7 +92,7 @@ export const renderWeather = (weatherObj, dateObj) => {
 	renderWeatherItem(weatherObj.weatherTitle, DOM.weather.title);
 
 	//render icon
-	const iconName = weatherIcon(weatherObj.weatherTitle, dateObj.hours, weatherObj.sunset[0]);
+	const iconName = weatherIcon(weatherObj.weatherTitle, dateObj.hours, weatherObj.sunset[0], weatherObj.sunrise[0]);
 
 	const icon = `
 		<svg>
