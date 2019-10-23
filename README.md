@@ -9,5 +9,6 @@
 - HTML (Pug, Bootstrap v4)
 - CSS/CSS3 (SCSS)
 - JS (ES6+, Babel, Async)
+- Gulp 4
 - Responsive (Mobile First Approach)
 - Crossbrowser
