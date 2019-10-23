@@ -2,29 +2,29 @@ html(lang='en')
     head
         include includes/settings/head-include
 
-body.app
+    body.app
 
-    //________ APP FRAME ________
-    .app__frame.container
+        //________ APP FRAME ________
+        .app__frame.container
 
-        //-date and time block
-        .row
-            .col
-                include includes/blocks/date-time
+            //-date and time block
+            .row
+                .col
+                    include includes/blocks/date-time
 
-        //-location block
-        .row
-            .col.mt-2.mt-sm-4
-                include includes/blocks/location
+            //-location block
+            .row
+                .col.mt-2.mt-sm-4
+                    include includes/blocks/location
 
-        //-weather block
-        .row
-            .col.mt-3.mt-sm-5
-                include includes/blocks/weather
+            //-weather block
+            .row
+                .col.mt-3.mt-sm-5
+                    include includes/blocks/weather
 
-        //-btns block (reload weather button)
-        .row
-            .col.mt-3
-                include includes/blocks/btns-block
+            //-btns block (reload weather button)
+            .row
+                .col.mt-3
+                    include includes/blocks/btns-block
 
-    script(src="scripts/scripts.min.js")
+        script(src="scripts/scripts.min.js")

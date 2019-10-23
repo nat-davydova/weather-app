@@ -96,7 +96,7 @@ export const renderWeather = (weatherObj, dateObj) => {
 
 	const icon = `
 		<svg>
-         	<use xlink:href="./assets/sprites/sprites-colored/svg/sprite.symbol.svg#${iconName}" >
+         	<use xlink:href="/assets/sprites/sprites-colored/svg/sprite.symbol.svg#${iconName}" >
 		</svg>
 	`;
 
