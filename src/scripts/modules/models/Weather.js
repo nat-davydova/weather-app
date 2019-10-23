@@ -38,8 +38,6 @@ export default class Weather {
 			this.sunrise = Weather.convertFromUnix(weatherCast.data.sys.sunrise); //initially in unix
 			this.sunset = Weather.convertFromUnix(weatherCast.data.sys.sunset); //initially in unix
 
-			console.log(weatherCast);
-
 		} catch (e) {
 
 			this.weatherError = `Sorry! We can't define your weather :(`;
