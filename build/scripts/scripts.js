@@ -3112,7 +3112,7 @@ var renderWeather = function renderWeather(weatherObj, dateObj) {
   renderWeatherItem(weatherObj.weatherTitle, _path.DOM.weather.title); //render icon
 
   var iconName = weatherIcon(weatherObj.weatherTitle, dateObj.hours, weatherObj.sunset[0], weatherObj.sunrise[0]);
-  var icon = "\n\t\t<svg>\n         \t<use xlink:href=\"/assets/sprites/sprites-colored/svg/sprite.symbol.svg#".concat(iconName, "\" >\n\t\t</svg>\n\t");
+  var icon = "\n\t\t<svg xmlns=\"http://www.w3.org/2000/svg\">\n         \t<use xlink:href=\"./assets/sprites/sprites-colored/svg/sprite.symbol.svg#".concat(iconName, "\" >\n\t\t</svg>\n\t");
 
   _path.DOM.weather.icon.insertAdjacentHTML("beforeend", icon);
 }; //render temperature

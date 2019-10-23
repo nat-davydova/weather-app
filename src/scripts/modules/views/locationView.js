@@ -13,6 +13,4 @@ export const renderLocation = (locationObj) => {
 		DOM.location.content.textContent = `${locationObj.district}`;
 	}
 
-
-
 };
