@@ -4,7 +4,7 @@
 
 [Check the demo](https://eisenpar.com/weather-app/)
 
-
+<img src="https://eisenpar.com/weather-app/sample.jpg" width="320" />
 
 - HTML (Pug, Bootstrap v4)
 - CSS/CSS3 (SCSS)
