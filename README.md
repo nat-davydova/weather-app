@@ -2,7 +2,7 @@
 
 ## ⚠ Works ONLY if you allow an access to your geolocation in browser!
 
-[Check the demo](https://eisenpar.com/weather-app/)
+<a href="https://eisenpar.com/weather-app/" target="_blank">Check the Demo</a>
 
 <img src="https://eisenpar.com/weather-app/sample.jpg" width="320" />
 
