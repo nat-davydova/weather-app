@@ -6,7 +6,7 @@
 
 ![Weather App image](https://eisenpar.com/weather-app/sample.jpg)
 
-- HTML (Pug)
+- HTML (Pug, Bootstrap v4)
 - CSS/CSS3 (SCSS)
 - JS (ES6+, Babel, Async)
 - Responsive (Mobile First Approach)
