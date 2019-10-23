@@ -5,6 +5,14 @@ import { DOM } from './../configs/path';
 
 export const renderLocation = (locationObj) => {
 
-	DOM.location.content.textContent = `${locationObj.city}, ${locationObj.district}`;
+	if(locationObj.city && locationObj.district) {
+		DOM.location.content.textContent = `${locationObj.city}, ${locationObj.district}`;
+	} else if (locationObj.city) {
+		DOM.location.content.textContent = `${locationObj.city}`;
+	} else if(locationObj.district) {
+		DOM.location.content.textContent = `${locationObj.district}`;
+	}
+
+
 
 };

@@ -2998,7 +2998,13 @@ var _path = require("./../configs/path");
 //import DOM from configs
 //render location info into location part of UI
 var renderLocation = function renderLocation(locationObj) {
-  _path.DOM.location.content.textContent = "".concat(locationObj.city, ", ").concat(locationObj.district);
+  if (locationObj.city && locationObj.district) {
+    _path.DOM.location.content.textContent = "".concat(locationObj.city, ", ").concat(locationObj.district);
+  } else if (locationObj.city) {
+    _path.DOM.location.content.textContent = "".concat(locationObj.city);
+  } else if (locationObj.district) {
+    _path.DOM.location.content.textContent = "".concat(locationObj.district);
+  }
 };
 
 exports.renderLocation = renderLocation;
