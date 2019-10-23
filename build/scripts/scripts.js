@@ -3027,6 +3027,11 @@ var _path = require("./../configs/path");
 //render weather item into the DOM - helper function
 var renderWeatherItem = function renderWeatherItem(item, uiElem) {
   uiElem.textContent = item;
+}; //convert 1-digit numbers to 2-digits numbers
+
+
+var twoDigitsConvert = function twoDigitsConvert(elem) {
+  return "0".concat(elem);
 }; //pick proper weather icon based on weather title and time
 
 
@@ -3101,12 +3106,16 @@ var renderWeather = function renderWeather(weatherObj, dateObj) {
       sunrHours = _weatherObj$sunrise[0],
       sunrMins = _weatherObj$sunrise[1];
 
+  sunrHours < 10 ? sunrHours = twoDigitsConvert(sunrHours) : sunrHours;
+  sunrMins < 10 ? sunrMins = twoDigitsConvert(sunrMins) : sunrMins;
   renderWeatherItem("".concat(sunrHours, ":").concat(sunrMins), _path.DOM.weather.sunrise); //render sunset
 
   var _weatherObj$sunset = (0, _slicedToArray2["default"])(weatherObj.sunset, 2),
       sunsHours = _weatherObj$sunset[0],
       sunsMins = _weatherObj$sunset[1];
 
+  sunsHours < 10 ? sunsHours = twoDigitsConvert(sunsHours) : sunsHours;
+  sunsMins < 10 ? sunsMins = twoDigitsConvert(sunsMins) : sunsMins;
   renderWeatherItem("".concat(sunsHours, ":").concat(sunsMins), _path.DOM.weather.sunset); //render weather title
 
   renderWeatherItem(weatherObj.weatherTitle, _path.DOM.weather.title); //render icon

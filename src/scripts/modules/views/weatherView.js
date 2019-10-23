@@ -6,6 +6,9 @@ const renderWeatherItem = (item, uiElem) => {
 	uiElem.textContent = item;
 };
 
+//convert 1-digit numbers to 2-digits numbers
+const twoDigitsConvert = (elem) => (`0${elem}`);
+
 //pick proper weather icon based on weather title and time
 const weatherIcon = (weatherType, localHours, sunset, sunrise) => {
 
@@ -79,12 +82,18 @@ export const renderWeather = (weatherObj, dateObj) => {
 	renderWeatherItem(`${weatherObj.pressure}hPA`, DOM.weather.pressure);
 
 	//render sunrise
-	const [ sunrHours, sunrMins ] = weatherObj.sunrise;
+	let [ sunrHours, sunrMins ] = weatherObj.sunrise;
+
+	sunrHours < 10 ? sunrHours = twoDigitsConvert(sunrHours) : sunrHours;
+	sunrMins < 10 ? sunrMins = twoDigitsConvert(sunrMins) : sunrMins;
 
 	renderWeatherItem(`${sunrHours}:${sunrMins}`, DOM.weather.sunrise);
 
 	//render sunset
-	const [ sunsHours, sunsMins ] = weatherObj.sunset;
+	let [ sunsHours, sunsMins ] = weatherObj.sunset;
+
+	sunsHours < 10 ? sunsHours = twoDigitsConvert(sunsHours) : sunsHours;
+	sunsMins < 10 ? sunsMins = twoDigitsConvert(sunsMins) : sunsMins;
 
 	renderWeatherItem(`${sunsHours}:${sunsMins}`, DOM.weather.sunset);
 
