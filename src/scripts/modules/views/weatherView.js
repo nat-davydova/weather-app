@@ -70,13 +70,13 @@ const weatherIcon = (weatherType, localHours, sunset) => {
 export const renderWeather = (weatherObj, dateObj) => {
 
 	//render wind
-	renderWeatherItem(`${weatherObj.wind} m/s`, DOM.weather.wind);
+	renderWeatherItem(`${weatherObj.wind}m/s`, DOM.weather.wind);
 
 	//render humidity
-	renderWeatherItem(`${weatherObj.humidity} %`, DOM.weather.humidity);
+	renderWeatherItem(`${weatherObj.humidity}%`, DOM.weather.humidity);
 
 	//render pressure
-	renderWeatherItem(`${weatherObj.pressure} hPA`, DOM.weather.pressure);
+	renderWeatherItem(`${weatherObj.pressure}hPA`, DOM.weather.pressure);
 
 	//render sunrise
 	const [ sunrHours, sunrMins ] = weatherObj.sunrise;

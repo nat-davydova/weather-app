@@ -3086,11 +3086,11 @@ var weatherIcon = function weatherIcon(weatherType, localHours, sunset) {
 
 var renderWeather = function renderWeather(weatherObj, dateObj) {
   //render wind
-  renderWeatherItem("".concat(weatherObj.wind, " m/s"), _path.DOM.weather.wind); //render humidity
+  renderWeatherItem("".concat(weatherObj.wind, "m/s"), _path.DOM.weather.wind); //render humidity
 
-  renderWeatherItem("".concat(weatherObj.humidity, " %"), _path.DOM.weather.humidity); //render pressure
+  renderWeatherItem("".concat(weatherObj.humidity, "%"), _path.DOM.weather.humidity); //render pressure
 
-  renderWeatherItem("".concat(weatherObj.pressure, " hPA"), _path.DOM.weather.pressure); //render sunrise
+  renderWeatherItem("".concat(weatherObj.pressure, "hPA"), _path.DOM.weather.pressure); //render sunrise
 
   var _weatherObj$sunrise = (0, _slicedToArray2["default"])(weatherObj.sunrise, 2),
       sunrHours = _weatherObj$sunrise[0],
