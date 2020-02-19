@@ -8,7 +8,7 @@ The App Grabs <strong>local date and time</strong>, then - <strong>user's coordi
 
 <img src="https://eisenpar.com/weather-app/sample.jpg" width="320" />
 
-### ⚙️ Use `gulp` command to start app locally
+### ⚙️ Use `gulp` command to run app locally
 
 - HTML (Pug, Bootstrap v4)
 - CSS/CSS3 (SCSS)
